@@ -1,0 +1,23 @@
+{
+  "name": "oberknecht-client",
+  "version": "0.0.2",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jubewe/oberknecht-client.git"
+  },
+  "author": "Jubewe",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/jubewe/oberknecht-client/issues"
+  },
+  "homepage": "https://github.com/jubewe/oberknecht-client#readme",
+  "dependencies": {
+    "reconnecting-websocket": "^4.4.0",
+    "ws": "^8.12.0"
+  }
+}
