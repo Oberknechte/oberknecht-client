@@ -1,0 +1,20 @@
+This project is licensed under the Mozilla Public License Version 2.0 (see LICENSE)
+
+
+#                   oberknecht-client                #
+> https://github.com/jubewe/oberknecht-client
+> https://www.npmjs.com/package/oberknecht-client
+
+
+# Ⅰ.    Install
+>   npm install oberknecht-client
+
+
+# Ⅱ.   Get Started
+
+1.  Import the client by simply typing "oberknechtClient" into a .js file
+
+2.  Create your client by using new oberknechtClient({<config>})
+    You can find the required parameters (token and username) by typing " in the config shown above
+3.  Connect to the chat by using <client>.connect()
+4.  You can receive Twitch Chat messages (PRIVMSG) by using <client>.onPRIVMSG(<privmsg> => {<your handler>})
