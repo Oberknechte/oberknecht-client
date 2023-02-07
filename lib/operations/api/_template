@@ -1,0 +1,7 @@
+function anything(sym, args){
+    return new Promise((resolve, reject) => {
+
+    });
+};
+
+module.exports = anything;
