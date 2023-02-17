@@ -19,6 +19,9 @@ require("./lib/operations/pong");
 require("./lib/operations/privmsg");
 require("./lib/operations/reply");
 require("./lib/operations/sendraw");
+
+require("oberknecht-api");
+require("oberknecht-utils");
 // This is all because JS won't show any values on the callbacks unless I import them here  FeelsWeirdMan
 
 module.exports = class {
