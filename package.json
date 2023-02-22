@@ -1,6 +1,6 @@
 {
   "name": "oberknecht-client",
-  "version": "0.1.0-9",
+  "version": "0.1.1",
   "description": "",
   "main": "index.js",
   "scripts": {
