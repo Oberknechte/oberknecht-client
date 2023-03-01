@@ -6,9 +6,6 @@ require("./lib/parser/USERNOTICE.Message");
 require("./lib/parser/USERSTATE.Message");
 require("./lib/parser/WHISPER.Message");
 
-require("./lib/emitters/oberknecht.emitter");
-require("./lib/emitters/oberknecht.action.emitter");
-
 require("./lib/operations/action");
 require("./lib/operations/join");
 require("./lib/operations/joinAll");
@@ -25,6 +22,7 @@ require("./lib/arguments/oberknechtClient.clientOptions");
 
 require("oberknecht-api");
 require("oberknecht-utils");
+require("oberknecht-emitters");
 // This is all because JS won't show any values on the callbacks unless I import them here  FeelsWeirdMan
 
 module.exports = class {
