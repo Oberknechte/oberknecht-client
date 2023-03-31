@@ -16,7 +16,7 @@ require("./lib/operations/pong");
 require("./lib/operations/privmsg");
 require("./lib/operations/reply");
 require("./lib/operations/sendraw");
-require("./lib/operations/getuser");
+require("./lib/operations/getusers");
 
 require("./lib/arguments/oberknechtClient.clientOptions");
 
