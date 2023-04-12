@@ -1,6 +1,6 @@
 {
   "name": "oberknecht-client",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -17,9 +17,9 @@
   },
   "homepage": "https://github.com/jubewe/oberknecht-client#readme",
   "dependencies": {
-    "oberknecht-api": ">=0.3.3",
+    "oberknecht-api": ">=0.4.4",
     "oberknecht-emitters": ">=0.1.0",
-    "oberknecht-utils": ">=0.0.5",
+    "oberknecht-utils": ">=0.0.7",
     "reconnecting-websocket": "^4.4.0",
     "request": "^2.88.2",
     "ws": "^8.12.0"
