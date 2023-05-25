@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jubewe/oberknecht-client.git"
+    "url": "git+https://github.com/oberknechte/oberknecht-client.git"
   },
   "author": "Jubewe",
   "license": "MPL-2.0",
   "bugs": {
-    "url": "https://github.com/jubewe/oberknecht-client/issues"
+    "url": "https://github.com/oberknechte/oberknecht-client/issues"
   },
-  "homepage": "https://github.com/jubewe/oberknecht-client#readme",
+  "homepage": "https://github.com/oberknechte/oberknecht-client#readme",
   "dependencies": {
     "oberknecht-api": "^0.6.0",
     "oberknecht-emitters": ">=0.1.0",
