@@ -18,8 +18,6 @@ require("./lib/operations/reply");
 require("./lib/operations/sendraw");
 require("./lib/operations/getusers");
 
-require("./lib/arguments/oberknechtClient.clientOptions");
-
 require("oberknecht-api");
 require("oberknecht-utils");
 require("oberknecht-emitters");
