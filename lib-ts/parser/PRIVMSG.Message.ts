@@ -5,6 +5,11 @@ import { message } from "./subclasses/PRIVMSG.message";
 import { channel } from "./subclasses/PRIVMSG.channel";
 import { server } from "./subclasses/PRIVMSG.server";
 import { colorsType } from "oberknecht-api/lib-ts/types/endpoints/color";
+import { privmsg } from "../operations/privmsg";
+import { reply } from "../operations/reply";
+import { action } from "../operations/action";
+import { sendraw } from "../operations/sendraw";
+import { whisper } from "../operations/whisper";
 
 export class privmsgMessage {
     sym;
@@ -188,9 +193,9 @@ export class privmsgMessage {
     async updateColor(color: colorsType) { return i.OberknechtAPI[this.sym].updateColor(color) };
     async getColor(userids: string | string[]) { return i.OberknechtAPI[this.sym].getColor(userids) };
 
-    async send(message: string) { return require("../operations/privmsg")(this.sym, this.channelName, message).catch() };
-    async reply(message: string) { return require("../operations/reply")(this.sym, message, this.channelName, this.messageID).catch() };
-    async action(message: string) { return require("../operations/action")(this.sym, this.channelName, message).catch() };
-    async sendRaw(message: string) { return require("../operations/sendraw")(this.sym, message).catch() };
-    async whisper(message: string) { return require("../operations/whisper")(this.sym, this.senderUserID, message).catch() };
+    async send(message: string) { return privmsg(this.sym, this.channelName, message).catch() };
+    async reply(message: string) { return reply(this.sym, message, this.channelName, this.messageID).catch() };
+    async action(message: string) { return action(this.sym, this.channelName, message).catch() };
+    async sendRaw(message: string) { return sendraw(this.sym, message).catch() };
+    async whisper(message: string) { return whisper(this.sym, this.senderUserID, message).catch() };
 };

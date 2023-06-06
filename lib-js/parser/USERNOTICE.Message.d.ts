@@ -64,9 +64,9 @@ export declare class usernoticeMessage {
     r9kOff(): Promise<any>;
     chatdelay(duration: number): Promise<any>;
     chatdelayOff(): Promise<any>;
-    send(message: string): Promise<any>;
-    reply(message: string): Promise<any>;
-    action(message: string): Promise<any>;
-    sendRaw(message: string): Promise<any>;
+    send(message: string): Promise<unknown>;
+    reply(message: string): Promise<unknown>;
+    action(message: string): Promise<unknown>;
+    sendRaw(message: string): Promise<unknown>;
     whisper(message: string): Promise<any>;
 }

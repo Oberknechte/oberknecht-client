@@ -1,5 +1,6 @@
 import { i } from "..";
 import { _checklimit } from "../functions/_checklimit";
+import { _createws } from "../functions/_createws";
 import { joinQueue } from "./join.queue";
 import { privmsgQueue } from "./privmsg.queue";
 
@@ -23,8 +24,8 @@ export class twitchAction {
             wsnum = (wsnum ?? i.clientData[sym].currentKnecht);
 
             if (i.clientData[sym].knechtSockets[wsnum].channels.length >= i.clientData[sym]._options.max_channels_per_ws) {
-                await require("../functions/_createws")(sym)
-                    .then(a => {
+                await _createws(sym)
+                    .then((a: number) => {
                         wsnum = a;
                     });
             };

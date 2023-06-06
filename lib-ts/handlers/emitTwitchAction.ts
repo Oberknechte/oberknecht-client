@@ -2,6 +2,7 @@ import { cleanChannelName } from "oberknecht-utils";
 import { _splitmsg } from "../functions/_splitmsg";
 import { announcementColors } from "oberknecht-api/lib-js/types/announcementColors";
 import { i } from "..";
+import { _createws } from "../functions/_createws";
 
 export async function emitTwitchAction(sym: string, wsnum: number | undefined, messageType: string, messageContent?: string, preContent?: string, rawContent?: string) {
     return new Promise(async (resolve, reject) => {
@@ -10,8 +11,8 @@ export async function emitTwitchAction(sym: string, wsnum: number | undefined, m
         if (!["JOIN", "PART"].includes(messageType.toUpperCase())) wsnum = 0;
         if (["JOIN"].includes(messageType.toUpperCase())) {
             if (i.clientData[sym].knechtSockets[wsnum].channels.length >= i.clientData[sym]._options.max_channels_per_ws) {
-                await require("../functions/_createws")(sym)
-                    .then(a => {
+                await _createws(sym)
+                    .then((a: number) => {
                         wsnum = a;
                     })
                     .catch(e => {

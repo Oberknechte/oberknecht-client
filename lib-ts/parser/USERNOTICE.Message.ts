@@ -4,6 +4,11 @@ import { userstate } from "./subclasses/USERNOTICE.userstate";
 import { message } from "./subclasses/USERNOTICE.message";
 import { channel } from "./subclasses/USERNOTICE.channel";
 import { server } from "./subclasses/USERNOTICE.server";
+import { privmsg } from "../operations/privmsg";
+import { reply } from "../operations/reply";
+import { action } from "../operations/action";
+import { sendraw } from "../operations/sendraw";
+import { whisper } from "../operations/whisper";
 
 export class usernoticeMessage {
     sym;
@@ -136,9 +141,9 @@ export class usernoticeMessage {
     async chatdelay(duration: number) { return i.OberknechtAPI[this.sym].chatdelay(this.channelID, duration) };
     async chatdelayOff() { return i.OberknechtAPI[this.sym].chatdelayOff(this.channelID) };
 
-    async send(message: string) { return require("../operations/privmsg")(this.sym, this.channelName, message).catch() };
-    async reply(message: string) { return require("../operations/reply")(this.sym, message, this.channelName, this.messageID).catch() };
-    async action(message: string) { return require("../operations/action")(this.sym, this.channelName, message).catch() };
-    async sendRaw(message: string) { return require("../operations/sendraw")(this.sym, message).catch() };
-    async whisper(message: string) { return require("../operations/whisper")(this.sym, this.senderUserID, message).catch() };
+    async send(message: string) { return privmsg(this.sym, this.channelName, message).catch() };
+    async reply(message: string) { return reply(this.sym, message, this.channelName, this.messageID).catch() };
+    async action(message: string) { return action(this.sym, this.channelName, message).catch() };
+    async sendRaw(message: string) { return sendraw(this.sym, message).catch() };
+    async whisper(message: string) { return whisper(this.sym, this.senderUserID, message).catch() };
 };

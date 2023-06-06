@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.joinQueue = void 0;
 const __1 = require("..");
+const _createws_1 = require("../functions/_createws");
 let isTriggered = false;
 let q = {};
 function joinQueue(sym, timeout, chan, res, rej) {
@@ -24,8 +25,8 @@ function joinQueue(sym, timeout, chan, res, rej) {
                 let wsnum = __1.i.clientData[sym].currentKnecht;
                 if (__1.i.clientData[sym].knechtSockets[wsnum].channels.length >= __1.i.clientData[sym]._options.max_channels_per_ws) {
                     clearInterval(int);
-                    await require("../functions/_createws")(sym)
-                        .then(a => {
+                    await (0, _createws_1._createws)(sym)
+                        .then((a) => {
                         wsnum = a;
                     })
                         .finally(() => {

@@ -7,6 +7,11 @@ const USERNOTICE_userstate_1 = require("./subclasses/USERNOTICE.userstate");
 const USERNOTICE_message_1 = require("./subclasses/USERNOTICE.message");
 const USERNOTICE_channel_1 = require("./subclasses/USERNOTICE.channel");
 const USERNOTICE_server_1 = require("./subclasses/USERNOTICE.server");
+const privmsg_1 = require("../operations/privmsg");
+const reply_1 = require("../operations/reply");
+const action_1 = require("../operations/action");
+const sendraw_1 = require("../operations/sendraw");
+const whisper_1 = require("../operations/whisper");
 class usernoticeMessage {
     sym;
     _raw;
@@ -128,15 +133,15 @@ class usernoticeMessage {
     ;
     async chatdelayOff() { return __1.i.OberknechtAPI[this.sym].chatdelayOff(this.channelID); }
     ;
-    async send(message) { return require("../operations/privmsg")(this.sym, this.channelName, message).catch(); }
+    async send(message) { return (0, privmsg_1.privmsg)(this.sym, this.channelName, message).catch(); }
     ;
-    async reply(message) { return require("../operations/reply")(this.sym, message, this.channelName, this.messageID).catch(); }
+    async reply(message) { return (0, reply_1.reply)(this.sym, message, this.channelName, this.messageID).catch(); }
     ;
-    async action(message) { return require("../operations/action")(this.sym, this.channelName, message).catch(); }
+    async action(message) { return (0, action_1.action)(this.sym, this.channelName, message).catch(); }
     ;
-    async sendRaw(message) { return require("../operations/sendraw")(this.sym, message).catch(); }
+    async sendRaw(message) { return (0, sendraw_1.sendraw)(this.sym, message).catch(); }
     ;
-    async whisper(message) { return require("../operations/whisper")(this.sym, this.senderUserID, message).catch(); }
+    async whisper(message) { return (0, whisper_1.whisper)(this.sym, this.senderUserID, message).catch(); }
     ;
 }
 exports.usernoticeMessage = usernoticeMessage;

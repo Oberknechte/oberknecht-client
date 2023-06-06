@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.twitchAction = void 0;
 const __1 = require("..");
 const _checklimit_1 = require("../functions/_checklimit");
+const _createws_1 = require("../functions/_createws");
 const join_queue_1 = require("./join.queue");
 const privmsg_queue_1 = require("./privmsg.queue");
 class twitchAction {
@@ -22,8 +23,8 @@ class twitchAction {
             __1.i.clientData[sym].queueData.join[Date.now()] = channel;
             wsnum = (wsnum ?? __1.i.clientData[sym].currentKnecht);
             if (__1.i.clientData[sym].knechtSockets[wsnum].channels.length >= __1.i.clientData[sym]._options.max_channels_per_ws) {
-                await require("../functions/_createws")(sym)
-                    .then(a => {
+                await (0, _createws_1._createws)(sym)
+                    .then((a) => {
                     wsnum = a;
                 });
             }

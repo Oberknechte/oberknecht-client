@@ -87,9 +87,9 @@ export declare class privmsgMessage {
     unraid(broadcaster_id: string): Promise<any>;
     updateColor(color: colorsType): Promise<any>;
     getColor(userids: string | string[]): Promise<any>;
-    send(message: string): Promise<any>;
-    reply(message: string): Promise<any>;
-    action(message: string): Promise<any>;
-    sendRaw(message: string): Promise<any>;
+    send(message: string): Promise<unknown>;
+    reply(message: string): Promise<unknown>;
+    action(message: string): Promise<unknown>;
+    sendRaw(message: string): Promise<unknown>;
     whisper(message: string): Promise<any>;
 }

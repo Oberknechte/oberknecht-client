@@ -1,4 +1,5 @@
 import { i } from "..";
+import { _createws } from "../functions/_createws";
 
 let isTriggered = false;
 let q = {};
@@ -14,7 +15,7 @@ export function joinQueue(sym: string, timeout: number | undefined, chan: string
         if ((i.clientData[sym].queue?.join ?? []).length > 0) {
             const channelNum = ((((i.clientData[sym]._options?.botStatus ?? "default") === "verified") || i.clientData[sym]._options.ignoreJoinLimits) ? 2000 : 20);
             const channels = i.clientData[sym].queue.join.splice(0, channelNum);
-            
+
             channels.forEach(async (channel: string) => {
                 if (!i.clientData[sym].queueData.join) i.clientData[sym].queueData.join = {};
 
@@ -24,8 +25,8 @@ export function joinQueue(sym: string, timeout: number | undefined, chan: string
 
                 if (i.clientData[sym].knechtSockets[wsnum].channels.length >= i.clientData[sym]._options.max_channels_per_ws) {
                     clearInterval(int);
-                    await require("../functions/_createws")(sym)
-                        .then(a => {
+                    await _createws(sym)
+                        .then((a: number) => {
                             wsnum = a;
                         })
                         .finally(() => {
