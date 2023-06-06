@@ -1,10 +1,11 @@
 {
   "name": "oberknecht-client",
-  "version": "0.4.0",
+  "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./export",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -17,11 +18,15 @@
   },
   "homepage": "https://github.com/oberknechte/oberknecht-client#readme",
   "dependencies": {
-    "oberknecht-api": "file:../oberknecht-api-ts",
+    "oberknecht-api": "file:../oberknecht-api",
     "oberknecht-emitters": ">=0.1.2",
-    "oberknecht-utils": ">=1.0.6",
+    "oberknecht-utils": ">=1.1.5",
     "reconnecting-websocket": "^4.4.0",
     "request": "^2.88.2",
     "ws": "^8.12.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.2.5",
+    "typescript": "^5.2.0-dev.20230605"
   }
 }
