@@ -13,7 +13,7 @@ const onWHISPERcallback = (whisper) => { };
 const onErrorcallback = (error) => { };
 const onAutojoinCallback = (channels) => { };
 const onEmptyCallback = () => { };
-let getusers_1 = require("../operations/getusers");
+let getuser_1 = require("../operations/getuser");
 let _createws_1 = require("../functions/_createws");
 let __1 = require("..");
 let privmsg_1 = require("../operations/privmsg");
@@ -178,8 +178,8 @@ class oberknechtClient {
     raid = this.API.raid;
     unraid = this.API.unraid;
     getStreams = this.API.getStreams;
-    getuser = async (login, id, noautofilterids) => { return (0, getusers_1.getusers)(this.symbol, login, id, true, noautofilterids); };
-    getusers = async (logins, ids, noautofilterids) => { return (0, getusers_1.getusers)(this.symbol, logins, ids, null, noautofilterids); };
+    getuser = async (login, id, noautofilterids) => { return (0, getuser_1.getuser)(this.symbol, login, id, true, noautofilterids); };
+    getusers = this.API._getUsers;
     getusername = async (userid) => {
         return new Promise((resolve, reject) => {
             this.API._getUsers([], userid, true).then(u => resolve(u.ids[userid])).catch(reject);

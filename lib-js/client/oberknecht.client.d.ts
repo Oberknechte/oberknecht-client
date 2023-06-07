@@ -13,6 +13,7 @@ declare const onAutojoinCallback: (channels: string[]) => void;
 declare const onEmptyCallback: () => void;
 import { clientOptions } from "../types/oberknechtClient.clientOptions";
 import { i } from "..";
+import { userEntry } from "oberknecht-api/lib-ts/types/endpoints/_getUsers";
 export declare class oberknechtClient {
     #private;
     get options(): any;
@@ -84,8 +85,8 @@ export declare class oberknechtClient {
     raid: (from_broadcaster_id: string, to_broadcaster_id: string, customtoken?: string) => Promise<import("oberknecht-api/lib-ts/types/endpoints/raid").raidResponse>;
     unraid: (broadcaster_id: string, customtoken?: string) => Promise<void>;
     getStreams: (filters: import("oberknecht-api/lib-ts/types/endpoints/getStreams").getStreamsFiltersType, customtoken?: string) => Promise<import("oberknecht-api/lib-ts/types/endpoints/getStreams").getStreamsResponse>;
-    getuser: (login: string | undefined, id: string | undefined, noautofilterids: boolean) => Promise<unknown>;
-    getusers: (logins: string | string[] | undefined, ids: string | string[] | undefined, noautofilterids: boolean) => Promise<unknown>;
+    getuser: (login: string | undefined, id: string | undefined, noautofilterids: boolean) => Promise<userEntry>;
+    getusers: (logins: string | string[], ids?: string | string[], noautofilterids?: Boolean, customtoken?: string) => Promise<import("oberknecht-api/lib-ts/types/_getUsers")._getUsersResponse>;
     getusername: (userid: string) => Promise<unknown>;
     getuserid: (username: string) => Promise<unknown>;
     on: any;
