@@ -15,7 +15,7 @@ const onEmptyCallback = () => { };
 
 import { clientOptions } from "../types/oberknechtClient.clientOptions";
 
-import { getuser } from "../operations/getuser";
+import { getusers } from "../operations/getusers";
 import { _createws } from "../functions/_createws";
 import { i } from "..";
 import { privmsg } from "../operations/privmsg";
@@ -27,7 +27,7 @@ import { part } from "../operations/part";
 import { join } from "../operations/join";
 import { sendraw } from "../operations/sendraw";
 import { action } from "../operations/action";
-import { userEntry } from "oberknecht-api/lib-ts/types/endpoints/_getUsers";
+import { getuser } from "../operations/getuser";
 
 export class oberknechtClient {
     #symbol = String(Symbol());
@@ -188,8 +188,8 @@ export class oberknechtClient {
     unraid = this.API.unraid;
     getStreams = this.API.getStreams;
 
-    getuser = async (login: string | undefined, id: string | undefined, noautofilterids: boolean): Promise<userEntry> => { return getuser(this.symbol, login, id, true, noautofilterids) };
-    getusers = this.API._getUsers;
+    getuser = async (login: string | undefined, id: string | undefined, noautofilterids: boolean) => { return await getuser(this.symbol, login, id, noautofilterids) };
+    getusers = async (logins: string | string[] | undefined, ids: string | string[] | undefined, noautofilterids: boolean) => { return getusers(this.symbol, logins, ids, noautofilterids) };
     getusername = async (userid: string) => {
         return new Promise((resolve, reject) => {
             this.API._getUsers([], userid, true).then(u => resolve(u.ids[userid])).catch(reject);
