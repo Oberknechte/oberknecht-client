@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.emitTwitchAction = void 0;
-const oberknecht_utils_1 = require("oberknecht-utils");
-const _splitmsg_1 = require("../functions/_splitmsg");
-const announcementColors_1 = require("oberknecht-api/lib-js/types/announcementColors");
-const __1 = require("..");
+let oberknecht_utils_1 = require("oberknecht-utils");
+let _splitmsg_1 = require("../functions/_splitmsg");
+let announcementColors_1 = require("oberknecht-api/lib-js/types/announcementColors");
+let __1 = require("..");
 async function emitTwitchAction(sym, wsnum, messageType, messageContent, preContent, rawContent) {
     return new Promise(async (resolve, reject) => {
         if (!__1.i.clientData[sym])

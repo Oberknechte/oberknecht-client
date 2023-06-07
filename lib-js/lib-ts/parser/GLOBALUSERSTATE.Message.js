@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.globaluserstateMessage = void 0;
-const oberknecht_utils_1 = require("oberknecht-utils");
+let oberknecht_utils_1 = require("oberknecht-utils");
 class globaluserstateMessage {
     sym;
     _raw;

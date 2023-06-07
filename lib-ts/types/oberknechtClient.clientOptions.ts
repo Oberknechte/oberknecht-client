@@ -19,5 +19,6 @@ export type clientOptions = {
     debug?: number,
     apiOptions?: typeof oberknechtAPIOptions,
     ignoreJoinLimits?: boolean,
-    disableSlashCommands?: boolean
+    disableSlashCommands?: boolean,
+    delayBetweenMessages?: number
 };

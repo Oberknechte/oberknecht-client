@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.joinQueue = void 0;
-const __1 = require("..");
-const _createws_1 = require("../functions/_createws");
+let __1 = require("..");
+let _createws_1 = require("../functions/_createws");
 let isTriggered = false;
 let q = {};
 function joinQueue(sym, timeout, chan, res, rej) {
@@ -47,12 +47,14 @@ function joinQueue(sym, timeout, chan, res, rej) {
                         __1.i.clientData[sym].knechtSockets[wsnum].channels = [];
                     if (!__1.i.clientData[sym].knechtSockets[wsnum].channels.includes(channel))
                         __1.i.clientData[sym].knechtSockets[wsnum].channels.push(channel);
+                    console.log("in queue, done", __1.i.clientData[sym].channels.length);
                     q[channel]?.res(this);
                     delete q[channel];
                 })
                     .catch(e => {
                     if (!__1.i.clientData[sym])
                         return clearInterval(int);
+                    console.log("in queue, err", e);
                     q[channel]?.rej(e);
                     delete q[channel];
                 });

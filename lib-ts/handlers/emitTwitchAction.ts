@@ -1,11 +1,25 @@
-import { cleanChannelName } from "oberknecht-utils";
+import { cleanChannelName, sleep } from "oberknecht-utils";
 import { _splitmsg } from "../functions/_splitmsg";
 import { announcementColors } from "oberknecht-api/lib-js/types/announcementColors";
-import { i } from "..";
 import { _createws } from "../functions/_createws";
+import { i } from "..";
+
+let currentInQueue = 0;
+let lastStart = -1;
 
 export async function emitTwitchAction(sym: string, wsnum: number | undefined, messageType: string, messageContent?: string, preContent?: string, rawContent?: string) {
     return new Promise(async (resolve, reject) => {
+        const myCurrentInQueue = currentInQueue;
+        const myLastStart = lastStart;
+        function getDelay(i2: number) {
+            let r = (Date.now() - myLastStart);
+            if (r > i.clientData[sym]._options.delayBetweenMessages) {
+                return (i.clientData[sym]._options.delayBetweenMessages * (i2 ?? 1));
+            } else {
+                return (r + (i.clientData[sym]._options.delayBetweenMessages * myCurrentInQueue * ((i2 ?? 1) <= 0 ? 1 : i2)))
+            };
+        };
+
         if (!i.clientData[sym]) return reject();
         if (messageType === "PRIVMSG" && i.clientData[sym]._options?.executeOnOutgoingPrivmsg) messageContent = i.clientData[sym]._options.executeOnOutgoingPrivmsg(messageContent);
         if (!["JOIN", "PART"].includes(messageType.toUpperCase())) wsnum = 0;
@@ -23,19 +37,14 @@ export async function emitTwitchAction(sym: string, wsnum: number | undefined, m
 
         let channel: string | undefined = messageContent?.match(/^#\w+/g)?.[0];
         let channeladd: string | undefined = (channel ? `${channel} :` : channel);
-        // @ts-ignore
         let messages = (messageType === "PRIVMSG" ? _splitmsg(messageContent.replace(/^#\w+\s:/g, "")).map(a => channeladd + a) : [messageContent]);
 
-        messages.forEach(async message => {
-            // @ts-ignore
+        messages.forEach(async (message, i_) => {
             let messageclean = message?.replace(channeladd, "");
-            let slashcommand = messageclean?.match(function () { return /(?<=^\/+)\w+/ }());
-            if (messageType === "PRIVMSG" && !i.clientData[sym]._options?.disableSlashCommands && (slashcommand ?? undefined)) {
-                // @ts-ignore
-                slashcommand = slashcommand[0];
-                // @ts-ignore
+            let slashcommandMatch = messageclean?.match((() => { return /(?<=^\/+)\w+/ })());
+            if (messageType === "PRIVMSG" && !i.clientData[sym]._options?.disableSlashCommands && (slashcommandMatch ?? undefined)) {
+                let slashcommand = slashcommandMatch[0];
                 let messageArguments = messageclean.split(" ");
-                // @ts-ignore
                 switch (slashcommand.toLowerCase()) {
                     case "ban": {
                         if (!messageArguments[1]) return reject(Error("No user specified (messageArguments[1] is undefined)"));
@@ -191,6 +200,12 @@ export async function emitTwitchAction(sym: string, wsnum: number | undefined, m
                     };
                 };
             };
+
+            lastStart = Date.now();
+            currentInQueue++;
+            const myDelay = getDelay(i_);
+            await sleep(getDelay(i_));
+            currentInQueue--;
 
             i.OberknechtActionEmitter[sym]?.once(messageType.toUpperCase(), () => { i.reconnectingKnechtClient[sym]?.[wsnum]?.send(((rawContent ? rawContent : `${((preContent ?? undefined) ? `${preContent} ` : "")}${messageType} ${message ?? ""}`))) })
                 .then(a => {

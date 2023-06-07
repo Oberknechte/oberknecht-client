@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports._log = void 0;
-const __1 = require("..");
+let __1 = require("..");
 function date_() { return new Date(new Date().setMinutes(new Date().getMinutes() - new Date().getTimezoneOffset())).toISOString().split("Z")[0].replace("T", " "); }
 ;
 function _log(sym, logopt, debugnum, logmsg, logcolorfg, logcolorbg) {

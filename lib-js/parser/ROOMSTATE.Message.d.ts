@@ -8,13 +8,13 @@ export declare class roomstateMessage {
     channelID: string;
     channelName: string;
     isEmoteOnly: boolean;
-    emoteOnlyRaw: boolean;
+    emoteOnlyRaw: string;
     isFollowersOnly: boolean;
-    followersOnlyRaw: boolean;
+    followersOnlyRaw: string;
     isR9k: boolean;
-    r9kRaw: boolean;
+    r9kRaw: string;
     isSubsOnly: boolean;
-    subsOnlyRaw: boolean;
+    subsOnlyRaw: string;
     isSlow: boolean;
     slow: number;
     slowRaw: string;

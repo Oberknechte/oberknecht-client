@@ -7,6 +7,7 @@ import { privmsgQueue } from "./privmsg.queue";
 export class twitchAction {
     static join = async (sym: string, channel: string, wsnum?: number) => {
         return new Promise(async (resolve, reject) => {
+            console.debug(Date.now(), "JOIN", channel, wsnum, "JOINQUEUE", i.clientData[sym].queue?.join?.length, "CHANNELS", i.clientData[sym].channels?.length, "queueData", Object.keys(i.clientData[sym].queueData.join ?? {}).length);
             if (!i.clientData[sym].queueData.join) i.clientData[sym].queueData.join = {};
             const isVerified = ((i.clientData[sym]._options?.botStatus ?? "default") === "verified");
             const limit = _checklimit(i.clientData[sym].queueData.join, ((isVerified || i.clientData[sym]._options?.ignoreJoinLimits) ? 2000 : 20), 10000);
@@ -16,19 +17,12 @@ export class twitchAction {
 
                 i.clientData[sym].queue.join.push(channel);
 
-                joinQueue(sym, undefined, channel, resolve, reject);
+                return joinQueue(sym, undefined, channel, resolve, reject);
             };
 
             i.clientData[sym].queueData.join[Date.now()] = channel;
 
             wsnum = (wsnum ?? i.clientData[sym].currentKnecht);
-
-            if (i.clientData[sym].knechtSockets[wsnum].channels.length >= i.clientData[sym]._options.max_channels_per_ws) {
-                await _createws(sym)
-                    .then((a: number) => {
-                        wsnum = a;
-                    });
-            };
 
             i.emitTwitchAction(sym, wsnum, "JOIN", channel)
                 .then(() => {
@@ -55,7 +49,7 @@ export class twitchAction {
 
                 i.clientData[sym].queue.privmsg.push(messageobject);
 
-                privmsgQueue(sym, undefined, messageobject, resolve, reject);
+                return privmsgQueue(sym, undefined, messageobject, resolve, reject);
             };
 
             if (!i.clientData[sym].queueData.privmsg) i.clientData[sym].queueData.privmsg = {};

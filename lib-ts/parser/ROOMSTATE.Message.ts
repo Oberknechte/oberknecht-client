@@ -14,16 +14,16 @@ export class roomstateMessage {
     channelName: string;
 
     isEmoteOnly: boolean;
-    emoteOnlyRaw: boolean;
+    emoteOnlyRaw: string;
 
     isFollowersOnly: boolean;
-    followersOnlyRaw: boolean;
+    followersOnlyRaw: string;
 
     isR9k: boolean;
-    r9kRaw: boolean;
+    r9kRaw: string;
 
     isSubsOnly: boolean;
-    subsOnlyRaw: boolean;
+    subsOnlyRaw: string;
 
     isSlow: boolean;
     slow: number;
@@ -48,20 +48,16 @@ export class roomstateMessage {
         this.channelName = i.utils.cleanChannelName(this.IRCMessageParts[3]);
 
         this.emoteOnlyRaw = this.IRCParameters["emote-only"];
-        // @ts-ignore
         this.isEmoteOnly = (this.emoteOnlyRaw === "1");
 
         this.followersOnlyRaw = this.IRCParameters["followers-only"];
-        // @ts-ignore
         this.isFollowersOnly = (this.followersOnlyRaw === "1");
 
         this.r9kRaw = this.IRCParameters["r9k"];
-        // @ts-ignore
         this.isR9k = (this.r9kRaw === "1");
 
         this.subsOnlyRaw = this.IRCParameters["subs-only"];
-        // @ts-ignore
-        this.isSubsOnly = (this.subsOnlyRaw === "1");
+        this.isSubsOnly = this.subsOnlyRaw === "1";
 
         this.slowRaw = this.IRCParameters["slow"];
         this.slow = parseInt(this.slowRaw);

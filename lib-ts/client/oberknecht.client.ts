@@ -67,6 +67,7 @@ export class oberknechtClient {
         if (!(options?.token)) throw Error("options.token is undefined");
         let _options = (options ?? {}) as clientOptions;
         _options.max_channels_per_ws = (_options.max_channels_per_ws ?? 100);
+        _options.delayBetweenMessages = (_options.delayBetweenMessages ?? 10);
         i.clientData[this.symbol] = {
             queue: {},
             queueData: {},

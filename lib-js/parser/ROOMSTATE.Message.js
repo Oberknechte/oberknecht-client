@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.roomstateMessage = void 0;
-const oberknecht_utils_1 = require("oberknecht-utils");
-const __1 = require("..");
+let oberknecht_utils_1 = require("oberknecht-utils");
+let __1 = require("..");
 class roomstateMessage {
     sym;
     _raw;
@@ -37,17 +37,13 @@ class roomstateMessage {
         this.channelID = this.IRCParameters["room-id"];
         this.channelName = __1.i.utils.cleanChannelName(this.IRCMessageParts[3]);
         this.emoteOnlyRaw = this.IRCParameters["emote-only"];
-        // @ts-ignore
         this.isEmoteOnly = (this.emoteOnlyRaw === "1");
         this.followersOnlyRaw = this.IRCParameters["followers-only"];
-        // @ts-ignore
         this.isFollowersOnly = (this.followersOnlyRaw === "1");
         this.r9kRaw = this.IRCParameters["r9k"];
-        // @ts-ignore
         this.isR9k = (this.r9kRaw === "1");
         this.subsOnlyRaw = this.IRCParameters["subs-only"];
-        // @ts-ignore
-        this.isSubsOnly = (this.subsOnlyRaw === "1");
+        this.isSubsOnly = this.subsOnlyRaw === "1";
         this.slowRaw = this.IRCParameters["slow"];
         this.slow = parseInt(this.slowRaw);
         this.isSlow = (this.slow > 0);

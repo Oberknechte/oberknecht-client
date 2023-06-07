@@ -23,7 +23,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.i = void 0;
+exports.iDynamic = exports.i = void 0;
 const emitTwitchAction_1 = require("./handlers/emitTwitchAction");
 const oberknechtUtils = __importStar(require("oberknecht-utils"));
 class i {
@@ -39,3 +39,7 @@ class i {
 }
 exports.i = i;
 ;
+let iDynamic = () => {
+    return i;
+};
+exports.iDynamic = iDynamic;

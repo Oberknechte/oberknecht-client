@@ -1,14 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.twitchAction = void 0;
-const __1 = require("..");
-const _checklimit_1 = require("../functions/_checklimit");
-const _createws_1 = require("../functions/_createws");
-const join_queue_1 = require("./join.queue");
-const privmsg_queue_1 = require("./privmsg.queue");
+let __1 = require("..");
+let _checklimit_1 = require("../functions/_checklimit");
+let join_queue_1 = require("./join.queue");
+let privmsg_queue_1 = require("./privmsg.queue");
 class twitchAction {
     static join = async (sym, channel, wsnum) => {
         return new Promise(async (resolve, reject) => {
+            console.debug(Date.now(), "JOIN", channel, wsnum, "JOINQUEUE", __1.i.clientData[sym].queue?.join?.length, "CHANNELS", __1.i.clientData[sym].channels?.length, "queueData", Object.keys(__1.i.clientData[sym].queueData.join ?? {}).length);
             if (!__1.i.clientData[sym].queueData.join)
                 __1.i.clientData[sym].queueData.join = {};
             const isVerified = ((__1.i.clientData[sym]._options?.botStatus ?? "default") === "verified");
@@ -17,18 +17,11 @@ class twitchAction {
                 if (!__1.i.clientData[sym].queue.join)
                     __1.i.clientData[sym].queue.join = [];
                 __1.i.clientData[sym].queue.join.push(channel);
-                (0, join_queue_1.joinQueue)(sym, undefined, channel, resolve, reject);
+                return (0, join_queue_1.joinQueue)(sym, undefined, channel, resolve, reject);
             }
             ;
             __1.i.clientData[sym].queueData.join[Date.now()] = channel;
             wsnum = (wsnum ?? __1.i.clientData[sym].currentKnecht);
-            if (__1.i.clientData[sym].knechtSockets[wsnum].channels.length >= __1.i.clientData[sym]._options.max_channels_per_ws) {
-                await (0, _createws_1._createws)(sym)
-                    .then((a) => {
-                    wsnum = a;
-                });
-            }
-            ;
             __1.i.emitTwitchAction(sym, wsnum, "JOIN", channel)
                 .then(() => {
                 if (!__1.i.clientData[sym].channels)
@@ -56,7 +49,7 @@ class twitchAction {
                 if (!__1.i.clientData[sym].queue.privmsg)
                     __1.i.clientData[sym].queue.privmsg = [];
                 __1.i.clientData[sym].queue.privmsg.push(messageobject);
-                (0, privmsg_queue_1.privmsgQueue)(sym, undefined, messageobject, resolve, reject);
+                return (0, privmsg_queue_1.privmsgQueue)(sym, undefined, messageobject, resolve, reject);
             }
             ;
             if (!__1.i.clientData[sym].queueData.privmsg)

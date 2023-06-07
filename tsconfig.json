@@ -8,6 +8,8 @@
         "outDir": "./lib-js",
         "declaration": true,
         "module": "NodeNext",
-        "target": "ESNext"
+        "target": "ESNext",
+        // "emitDeclarationOnly": true,
+        // "allowImportingTsExtensions": true
     }
 }

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.sendraw = void 0;
-const __1 = require("..");
+let __1 = require("..");
 async function sendraw(sym, msg, wsnum) {
     return new Promise((resolve, reject) => {
         if (!(msg ?? undefined))

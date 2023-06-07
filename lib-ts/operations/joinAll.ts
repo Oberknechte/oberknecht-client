@@ -1,4 +1,4 @@
-import { convertToArray, correctChannelName } from "oberknecht-utils";
+import { convertToArray, correctChannelName, sleep } from "oberknecht-utils";
 import { twitchAction } from "../handlers/twitchAction";
 
 export function joinAll(sym: string, channels: string | string[]) {

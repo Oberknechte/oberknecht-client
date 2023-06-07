@@ -11,3 +11,4 @@ export declare class i {
     static regex: typeof oberknechtUtils.regex;
     static emitTwitchAction: typeof emitTwitchAction;
 }
+export declare let iDynamic: () => typeof i;

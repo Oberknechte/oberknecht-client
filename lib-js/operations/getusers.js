@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getusers = void 0;
-const oberknecht_utils_1 = require("oberknecht-utils");
-const __1 = require("..");
+let oberknecht_utils_1 = require("oberknecht-utils");
+let __1 = require("..");
 async function getusers(sym, logins, ids, sendsingle, noautofilterids) {
     return new Promise((resolve, reject) => {
         if (!(ids ?? undefined) && !(logins ?? undefined))

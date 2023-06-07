@@ -43,12 +43,14 @@ export function joinQueue(sym: string, timeout: number | undefined, chan: string
                         i.clientData[sym].knechtSockets.channels[channel] = wsnum;
                         if (!i.clientData[sym].knechtSockets[wsnum].channels) i.clientData[sym].knechtSockets[wsnum].channels = [];
                         if (!i.clientData[sym].knechtSockets[wsnum].channels.includes(channel)) i.clientData[sym].knechtSockets[wsnum].channels.push(channel);
+                        console.log("in queue, done", i.clientData[sym].channels.length);
 
                         q[channel]?.res(this);
                         delete q[channel];
                     })
                     .catch(e => {
                         if (!i.clientData[sym]) return clearInterval(int);
+                        console.log("in queue, err", e);
 
                         q[channel]?.rej(e);
                         delete q[channel];

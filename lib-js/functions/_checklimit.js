@@ -6,7 +6,7 @@ function _checklimit(data, num, time) {
         static objects = Object.keys(data).filter(v => { return parseInt(v) >= (Date.now() - time); });
         static remainingRaw = (num - this.objects.filter(v => () => { return parseInt(v) >= (Date.now() - time); }).length);
         static remaining = (num - this.remainingRaw < 0 ? 0 : this.remainingRaw);
-        static isReached = (this.remaining === 0);
+        static isReached = (this.remaining <= 0);
     };
 }
 exports._checklimit = _checklimit;

@@ -1,12 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.usernoticeMessage = void 0;
-const oberknecht_utils_1 = require("oberknecht-utils");
-const __1 = require("..");
-const USERNOTICE_userstate_1 = require("./subclasses/USERNOTICE.userstate");
-const USERNOTICE_message_1 = require("./subclasses/USERNOTICE.message");
-const USERNOTICE_channel_1 = require("./subclasses/USERNOTICE.channel");
-const USERNOTICE_server_1 = require("./subclasses/USERNOTICE.server");
+let oberknecht_utils_1 = require("oberknecht-utils");
+let __1 = require("..");
+let USERNOTICE_userstate_1 = require("./subclasses/USERNOTICE.userstate");
+let USERNOTICE_message_1 = require("./subclasses/USERNOTICE.message");
+let USERNOTICE_channel_1 = require("./subclasses/USERNOTICE.channel");
+let USERNOTICE_server_1 = require("./subclasses/USERNOTICE.server");
 class usernoticeMessage {
     sym;
     _raw;

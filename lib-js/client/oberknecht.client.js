@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.oberknechtClient = void 0;
-const oberknecht_api_1 = require("oberknecht-api");
-const oberknecht_emitters_1 = require("oberknecht-emitters");
+let oberknecht_api_1 = require("oberknecht-api");
+let oberknecht_emitters_1 = require("oberknecht-emitters");
 const onPRIVMSGcallback = (privmsg, channelName, senderUsername, messageText) => { };
 const onGLOBALUSERSTATEcallback = (globaluserstate) => { };
 const onCLEARCHATcallback = (clearchat) => { };
@@ -13,18 +13,18 @@ const onWHISPERcallback = (whisper) => { };
 const onErrorcallback = (error) => { };
 const onAutojoinCallback = (channels) => { };
 const onEmptyCallback = () => { };
-const getusers_1 = require("../operations/getusers");
-const _createws_1 = require("../functions/_createws");
-const __1 = require("..");
-const privmsg_1 = require("../operations/privmsg");
-const ping_1 = require("../operations/ping");
-const whisper_1 = require("../operations/whisper");
-const partAll_1 = require("../operations/partAll");
-const joinAll_1 = require("../operations/joinAll");
-const part_1 = require("../operations/part");
-const join_1 = require("../operations/join");
-const sendraw_1 = require("../operations/sendraw");
-const action_1 = require("../operations/action");
+let getusers_1 = require("../operations/getusers");
+let _createws_1 = require("../functions/_createws");
+let __1 = require("..");
+let privmsg_1 = require("../operations/privmsg");
+let ping_1 = require("../operations/ping");
+let whisper_1 = require("../operations/whisper");
+let partAll_1 = require("../operations/partAll");
+let joinAll_1 = require("../operations/joinAll");
+let part_1 = require("../operations/part");
+let join_1 = require("../operations/join");
+let sendraw_1 = require("../operations/sendraw");
+let action_1 = require("../operations/action");
 class oberknechtClient {
     #symbol = String(Symbol());
     #secure;
@@ -79,6 +79,7 @@ class oberknechtClient {
             throw Error("options.token is undefined");
         let _options = (options ?? {});
         _options.max_channels_per_ws = (_options.max_channels_per_ws ?? 100);
+        _options.delayBetweenMessages = (_options.delayBetweenMessages ?? 10);
         __1.i.clientData[this.symbol] = {
             queue: {},
             queueData: {},
