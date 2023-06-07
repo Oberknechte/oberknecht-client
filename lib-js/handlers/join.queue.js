@@ -54,7 +54,6 @@ function joinQueue(sym, timeout, chan, res, rej) {
                     .catch(e => {
                     if (!__1.i.clientData[sym])
                         return clearInterval(int);
-                    console.log("in queue, err", e);
                     q[channel]?.rej(e);
                     delete q[channel];
                 });
