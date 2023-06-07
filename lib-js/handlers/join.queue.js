@@ -47,7 +47,6 @@ function joinQueue(sym, timeout, chan, res, rej) {
                         __1.i.clientData[sym].knechtSockets[wsnum].channels = [];
                     if (!__1.i.clientData[sym].knechtSockets[wsnum].channels.includes(channel))
                         __1.i.clientData[sym].knechtSockets[wsnum].channels.push(channel);
-                    console.log("in queue, done", __1.i.clientData[sym].channels.length);
                     q[channel]?.res(this);
                     delete q[channel];
                 })
