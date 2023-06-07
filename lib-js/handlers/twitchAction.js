@@ -8,7 +8,6 @@ let privmsg_queue_1 = require("./privmsg.queue");
 class twitchAction {
     static join = async (sym, channel, wsnum) => {
         return new Promise(async (resolve, reject) => {
-            console.debug(Date.now(), "JOIN", channel, wsnum, "JOINQUEUE", __1.i.clientData[sym].queue?.join?.length, "CHANNELS", __1.i.clientData[sym].channels?.length, "queueData", Object.keys(__1.i.clientData[sym].queueData.join ?? {}).length);
             if (!__1.i.clientData[sym].queueData.join)
                 __1.i.clientData[sym].queueData.join = {};
             const isVerified = ((__1.i.clientData[sym]._options?.botStatus ?? "default") === "verified");

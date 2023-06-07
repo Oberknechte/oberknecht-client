@@ -7,7 +7,6 @@ import { privmsgQueue } from "./privmsg.queue";
 export class twitchAction {
     static join = async (sym: string, channel: string, wsnum?: number) => {
         return new Promise(async (resolve, reject) => {
-            console.debug(Date.now(), "JOIN", channel, wsnum, "JOINQUEUE", i.clientData[sym].queue?.join?.length, "CHANNELS", i.clientData[sym].channels?.length, "queueData", Object.keys(i.clientData[sym].queueData.join ?? {}).length);
             if (!i.clientData[sym].queueData.join) i.clientData[sym].queueData.join = {};
             const isVerified = ((i.clientData[sym]._options?.botStatus ?? "default") === "verified");
             const limit = _checklimit(i.clientData[sym].queueData.join, ((isVerified || i.clientData[sym]._options?.ignoreJoinLimits) ? 2000 : 20), 10000);
