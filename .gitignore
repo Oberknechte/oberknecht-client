@@ -2,6 +2,7 @@
 .fuse_*
 .tmp.*/
 webpack.config.js
+.vscode/
 
 # Logs
 logs
