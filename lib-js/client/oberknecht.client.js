@@ -26,8 +26,9 @@ let join_1 = require("../operations/join");
 let sendraw_1 = require("../operations/sendraw");
 let action_1 = require("../operations/action");
 let getuser_1 = require("../operations/getuser");
+let clientSymNum = 0;
 class oberknechtClient {
-    #symbol = String(Symbol());
+    #symbol = `oberknechtClient-${clientSymNum++}`;
     #secure;
     #startTime = Date.now();
     get options() { return __1.i.clientData[this.symbol]?._options ?? {}; }

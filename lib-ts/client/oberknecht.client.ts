@@ -28,9 +28,10 @@ import { join } from "../operations/join";
 import { sendraw } from "../operations/sendraw";
 import { action } from "../operations/action";
 import { getuser } from "../operations/getuser";
+let clientSymNum = 0;
 
 export class oberknechtClient {
-    #symbol = String(Symbol());
+    readonly #symbol: string = `oberknechtClient-${clientSymNum++}`;
     #secure: boolean;
     #startTime = Date.now();
 

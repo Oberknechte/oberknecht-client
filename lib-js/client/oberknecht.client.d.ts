@@ -88,12 +88,12 @@ export declare class oberknechtClient {
     getusers: (logins: string | string[] | undefined, ids: string | string[] | undefined, noautofilterids: boolean) => Promise<import("oberknecht-api/lib-ts/types/endpoints/_getUsers").userEntry[]>;
     getusername: (userid: string) => Promise<unknown>;
     getuserid: (username: string) => Promise<unknown>;
-    on: any;
-    addListener: any;
-    off: any;
-    remove: any;
-    removeAllListeners: any;
-    emit: any;
+    on: (eventName: string | string[], callback: Function) => void;
+    addListener: (eventName: string | string[], callback: Function) => void;
+    off: (eventName: string, callback: Function) => void;
+    remove: (eventName: string, callback: Function) => void;
+    removeAllListeners: (eventName: string) => void;
+    emit: (eventName: string | string[], args: any) => void;
     onPRIVMSG: (callback: typeof onPRIVMSGcallback) => void;
     onGLOBALUSERSTATE: (callback: typeof onGLOBALUSERSTATEcallback) => void;
     onCLEARCHAT: (callback: typeof onCLEARCHATcallback) => void;
