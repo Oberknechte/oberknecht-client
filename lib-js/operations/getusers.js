@@ -9,7 +9,8 @@ async function getusers(sym, logins, ids, noautofilterids) {
             return reject(Error("No ids or users defined"));
         let users_ = (0, oberknecht_utils_1.convertToArray)(logins, false);
         let ids_ = (0, oberknecht_utils_1.convertToArray)(ids, false);
-        __1.i.OberknechtAPI[sym]._getUsers(users_, ids_, noautofilterids)
+        __1.i.OberknechtAPI[sym]
+            ._getUsers(users_, ids_, noautofilterids)
             .then((u) => {
             return resolve(Object.values(u.details));
         })
@@ -17,4 +18,3 @@ async function getusers(sym, logins, ids, noautofilterids) {
     });
 }
 exports.getusers = getusers;
-;

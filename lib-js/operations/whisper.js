@@ -6,4 +6,3 @@ async function whisper(sym, targetUserID, message, customtoken) {
     return __1.i.OberknechtAPI[sym].whisper(targetUserID, message, customtoken);
 }
 exports.whisper = whisper;
-;

@@ -10,4 +10,3 @@ async function join(sym, channel) {
     return await twitchAction_1.twitchAction.join(sym, channel_);
 }
 exports.join = join;
-;

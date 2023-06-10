@@ -25,7 +25,7 @@ class globaluserstateMessage {
         this.timestamp = dn;
         this.sym = sym;
         this._raw = rawMessage;
-        let ircParameters = this.ircParameters = (0, oberknecht_utils_1.messageParameters)(rawMessage);
+        let ircParameters = (this.ircParameters = (0, oberknecht_utils_1.messageParameters)(rawMessage));
         this.badgeInfo = ircParameters.badgeInfo;
         this.badgeInfoRaw = ircParameters.badgeInfoRaw;
         this.badgesRaw = ircParameters.badgesRaw;
@@ -35,11 +35,9 @@ class globaluserstateMessage {
         this.displayName = ircParameters.displayName;
         this.emoteSetsRaw = ircParameters.emoteSetsRaw;
         this.emoteSets = (0, oberknecht_utils_1.messageEmoteSets)(this.emoteSetsRaw);
-        this.turbo = (ircParameters.turbo === "1");
+        this.turbo = ircParameters.turbo === "1";
         this.userID = ircParameters.userID;
         this.userIDRaw = ircParameters.userIDRaw;
     }
-    ;
 }
 exports.globaluserstateMessage = globaluserstateMessage;
-;

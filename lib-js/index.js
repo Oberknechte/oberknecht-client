@@ -38,7 +38,6 @@ class i {
     static emitTwitchAction = emitTwitchAction_1.emitTwitchAction;
 }
 exports.i = i;
-;
 let iDynamic = () => {
     return i;
 };

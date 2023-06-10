@@ -13,4 +13,3 @@ async function ping(sym, wsnum) {
     });
 }
 exports.ping = ping;
-;

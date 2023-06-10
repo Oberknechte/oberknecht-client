@@ -2,29 +2,29 @@ import { messageEmotesReturn } from "oberknecht-utils";
 import { usernoticeMessage } from "../USERNOTICE.Message";
 
 export class message {
-    _inp: usernoticeMessage;
+  _inp: usernoticeMessage;
 
-    id: string;
-    type: string;
-    emotes: messageEmotesReturn;
-    emotesRaw: string;
-    emotecount: number;
-    timestamp: Date;
-    timestampRaw: number;
+  id: string;
+  type: string;
+  emotes: messageEmotesReturn;
+  emotesRaw: string;
+  emotecount: number;
+  timestamp: Date;
+  timestampRaw: number;
 
-    delete: Function;
+  delete: Function;
 
-    constructor(inp: usernoticeMessage) {
-        this._inp = inp;
+  constructor(inp: usernoticeMessage) {
+    this._inp = inp;
 
-        this.id = inp.messageID;
-        this.type = inp.IRCCommand;
-        this.emotes = inp.emotes;
-        this.emotesRaw = inp.emotesRaw;
-        this.emotecount = Object.keys(this.emotes).length;
-        this.timestamp = inp.serverTimestamp;
-        this.timestampRaw = inp.serverTimestampRaw;
+    this.id = inp.messageID;
+    this.type = inp.IRCCommand;
+    this.emotes = inp.emotes;
+    this.emotesRaw = inp.emotesRaw;
+    this.emotecount = Object.keys(this.emotes).length;
+    this.timestamp = inp.serverTimestamp;
+    this.timestampRaw = inp.serverTimestampRaw;
 
-        this.delete = inp.delete;
-    };
-};
+    this.delete = inp.delete;
+  }
+}

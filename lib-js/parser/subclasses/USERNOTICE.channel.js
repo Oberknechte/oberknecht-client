@@ -36,7 +36,5 @@ class channel {
         this.chatdelayOff = inp.chatdelayOff;
         this.announce = inp.announce;
     }
-    ;
 }
 exports.channel = channel;
-;

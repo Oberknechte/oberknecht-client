@@ -1,6 +1,6 @@
 {
   "name": "oberknecht-client",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "description": "",
   "main": "./export",
   "scripts": {
@@ -18,8 +18,8 @@
   },
   "homepage": "https://github.com/oberknechte/oberknecht-client#readme",
   "dependencies": {
-    "oberknecht-api": "^1.1.1",
-    "oberknecht-emitters": "^1.0.2",
+    "oberknecht-api": ">=1.1.4",
+    "oberknecht-emitters": ">=1.0.2",
     "oberknecht-utils": ">=1.1.9",
     "reconnecting-websocket": "^4.4.0",
     "ws": "^8.13.0"

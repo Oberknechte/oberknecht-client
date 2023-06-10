@@ -20,7 +20,5 @@ class message {
         this.emotesRaw = inp.emotesRaw;
         this.emotecount = Object.keys(inp.emotes).length;
     }
-    ;
 }
 exports.message = message;
-;

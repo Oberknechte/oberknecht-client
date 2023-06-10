@@ -7,7 +7,7 @@ function handleNotice(sym, rawMessage, wsnum) {
     let notice = new NOTICE_Message_1.noticeMessage(sym, rawMessage);
     if (!__1.i.clientData[sym])
         return;
-    wsnum = (wsnum ?? __1.i.clientData[sym]?.currentKnecht);
+    wsnum = wsnum ?? __1.i.clientData[sym]?.currentKnecht;
     __1.i.OberknechtEmitter[sym]?.emit(["irc:notice", `irc:${wsnum}:notice`], rawMessage);
     switch (notice.msgID) {
         case "cmds_available":
@@ -97,7 +97,7 @@ function handleNotice(sym, rawMessage, wsnum) {
         case "msg_channel_blocked":
         //Your message was not sent because your account is not in good standing in this "channel".
         case "turbo_only_color":
-        //Only turbo users can specify an arbitrary hex color. Use one of the following instead: <list of colors">".        
+        //Only turbo users can specify an arbitrary hex color. Use one of the following instead: <list of colors">".
         case "unraid_error_no_active_raid":
         //You do not have an active "raid".
         case "unraid_error_unexpected":
@@ -153,8 +153,7 @@ function handleNotice(sym, rawMessage, wsnum) {
         //You are sending whispers too fast. Try again in a second.
         case "whisper_restricted":
         //Your settings prevent you from sending this whisper.
-        case "whisper_restricted_recipient":
-            //That user’s settings prevent them from receiving this whisper
+        case "whisper_restricted_recipient": //That user’s settings prevent them from receiving this whisper
             {
                 __1.i.OberknechtEmitter[sym].emit(["irc:notice:reject"], rawMessage);
                 __1.i.OberknechtActionEmitter[sym].emitreject("PRIVMSG", rawMessage);
@@ -199,8 +198,7 @@ function handleNotice(sym, rawMessage, wsnum) {
         //Initiating <number> second commercial break. Keep in mind that your stream is still live and not everyone will get a "commercial".
         case "delete_message_success":
         //The message from <user> is now "deleted".
-        case "delete_staff_message_success":
-            //You deleted a message from staff <user>. Please email support@twitch.tv if a staff member is being "abusive".
+        case "delete_staff_message_success": //You deleted a message from staff <user>. Please email support@twitch.tv if a staff member is being "abusive".
             {
                 __1.i.OberknechtEmitter[sym].emit(["irc:notice:resolve", `irc:${wsnum}:notice:resolve`], rawMessage);
                 __1.i.OberknechtActionEmitter[sym].emitresolve("PRIVMSG", rawMessage);
@@ -233,10 +231,14 @@ function handleNotice(sym, rawMessage, wsnum) {
         //This room is already in subscribers-only "mode".
         case "bad_unban_no_ban":
         //<user> is not banned from this "channel".
-        case "bad_mod_mod":
-            //<user> is already a moderator of this "channel".
+        case "bad_mod_mod": //<user> is already a moderator of this "channel".
             {
-                __1.i.OberknechtEmitter[sym].emit(["irc:notice:rejectsuccess", "irc:notice:success", `irc:${wsnum}:notice:rejectsuccess`, `irc:${wsnum}:notice:success`], rawMessage);
+                __1.i.OberknechtEmitter[sym].emit([
+                    "irc:notice:rejectsuccess",
+                    "irc:notice:success",
+                    `irc:${wsnum}:notice:rejectsuccess`,
+                    `irc:${wsnum}:notice:success`,
+                ], rawMessage);
                 break;
             }
         case "usage_ban":
@@ -305,8 +307,7 @@ function handleNotice(sym, rawMessage, wsnum) {
         //Usage: “/vip <username>” - Grant VIP status to a user. Use “/vips” to list the VIPs of this "channel".
         case "usage_vips":
         //Usage: “/vips” - Lists the VIPs of this "channel".
-        case "usage_whisper":
-            //Usage: “/w <username> <"message>"”
+        case "usage_whisper": //Usage: “/w <username> <"message>"”
             {
                 __1.i.OberknechtEmitter[sym].emit(["irc:notice:usage", `irc:${wsnum}:notice:usage`], rawMessage);
                 break;
@@ -346,15 +347,13 @@ function handleNotice(sym, rawMessage, wsnum) {
         //This room is now in unique-chat "mode".
         case "subs_off":
         //This room is no longer in subscribers-only "mode".
-        case "subs_on":
-            //This room is now in subscribers-only "mode".
+        case "subs_on": //This room is now in subscribers-only "mode".
             {
                 __1.i.OberknechtEmitter[sym].emit(["irc:notice:info", `irc:${wsnum}:notice:info`], rawMessage);
                 break;
             }
         // ACTION EMITTER MESSAGES
-        case "msg_channel_suspended":
-            //This channel does not exist or has been "suspended". 
+        case "msg_channel_suspended": //This channel does not exist or has been "suspended".
             {
                 __1.i.OberknechtActionEmitter[sym].emitreject("353", "This channel does not exist or has been suspended.");
                 break;
@@ -362,4 +361,3 @@ function handleNotice(sym, rawMessage, wsnum) {
     }
 }
 exports.handleNotice = handleNotice;
-;

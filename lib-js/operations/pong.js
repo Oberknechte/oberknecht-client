@@ -6,4 +6,3 @@ async function pong(sym, wsnum) {
     return __1.i.emitTwitchAction(sym, wsnum, "PONG");
 }
 exports.pong = pong;
-;

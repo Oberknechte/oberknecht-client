@@ -31,9 +31,8 @@ class message {
         this.timestamp = inp.serverTimestamp;
         this.timestampRaw = inp.serverTimestampRaw;
     }
-    ;
-    async delete() { return __1.i.OberknechtAPI[this._inp.sym].deleteMessage(this._inp.channelID, this._inp.messageID); }
-    ;
+    async delete() {
+        return __1.i.OberknechtAPI[this._inp.sym].deleteMessage(this._inp.channelID, this._inp.messageID);
+    }
 }
 exports.message = message;
-;

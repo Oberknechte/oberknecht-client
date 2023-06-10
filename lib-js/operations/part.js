@@ -23,4 +23,3 @@ async function part(sym, channel) {
     });
 }
 exports.part = part;
-;

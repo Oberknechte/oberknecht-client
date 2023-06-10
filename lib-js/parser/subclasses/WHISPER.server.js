@@ -8,7 +8,5 @@ class server {
         this._inp = inp;
         this.IRCParameters = inp.IRCParameters;
     }
-    ;
 }
 exports.server = server;
-;

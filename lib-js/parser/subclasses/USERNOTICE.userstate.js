@@ -36,7 +36,5 @@ class userstate {
         this.untimeout = inp.untimeout;
         this.shoutout = inp.shoutout;
     }
-    ;
 }
 exports.userstate = userstate;
-;

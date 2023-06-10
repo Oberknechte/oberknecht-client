@@ -1,13 +1,13 @@
 import { whisperMessage } from "../WHISPER.Message";
 
 export class server {
-    _inp: whisperMessage;
+  _inp: whisperMessage;
 
-    IRCParameters: object
+  IRCParameters: object;
 
-    constructor(inp: whisperMessage) {
-        this._inp = inp;
+  constructor(inp: whisperMessage) {
+    this._inp = inp;
 
-        this.IRCParameters = inp.IRCParameters;
-    };
-};
+    this.IRCParameters = inp.IRCParameters;
+  }
+}

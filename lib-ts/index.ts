@@ -11,7 +11,7 @@ export class i {
   static utils = oberknechtUtils;
   static regex = oberknechtUtils.regex;
   static emitTwitchAction = emitTwitchAction;
-};
+}
 
 export let iDynamic = () => {
   return i;

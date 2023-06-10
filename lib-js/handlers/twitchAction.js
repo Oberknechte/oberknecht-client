@@ -10,17 +10,16 @@ class twitchAction {
         return new Promise(async (resolve, reject) => {
             if (!__1.i.clientData[sym].queueData.join)
                 __1.i.clientData[sym].queueData.join = {};
-            const isVerified = ((__1.i.clientData[sym]._options?.botStatus ?? "default") === "verified");
-            const limit = (0, _checklimit_1._checklimit)(__1.i.clientData[sym].queueData.join, ((isVerified || __1.i.clientData[sym]._options?.ignoreJoinLimits) ? 2000 : 20), 10000);
+            const isVerified = (__1.i.clientData[sym]._options?.botStatus ?? "default") === "verified";
+            const limit = (0, _checklimit_1._checklimit)(__1.i.clientData[sym].queueData.join, isVerified || __1.i.clientData[sym]._options?.ignoreJoinLimits ? 2000 : 20, 10000);
             if (limit.isReached) {
                 if (!__1.i.clientData[sym].queue.join)
                     __1.i.clientData[sym].queue.join = [];
                 __1.i.clientData[sym].queue.join.push(channel);
                 return (0, join_queue_1.joinQueue)(sym, undefined, channel, resolve, reject);
             }
-            ;
             __1.i.clientData[sym].queueData.join[Date.now()] = channel;
-            wsnum = (wsnum ?? __1.i.clientData[sym].currentKnecht);
+            wsnum = wsnum ?? __1.i.clientData[sym].currentKnecht;
             __1.i.emitTwitchAction(sym, wsnum, "JOIN", channel)
                 .then(() => {
                 if (!__1.i.clientData[sym].channels)
@@ -41,16 +40,19 @@ class twitchAction {
         return new Promise(async (resolve, reject) => {
             if (!__1.i.clientData[sym].queueData.privmsg)
                 __1.i.clientData[sym].queueData.privmsg = {};
-            const isVerified = ((__1.i.clientData[sym]._options?.botStatus ?? "default") === "verified");
-            const limit = (0, _checklimit_1._checklimit)((__1.i.clientData[sym].queueData.privmsg?.[channel] ?? {}), (isVerified ? 2000 : 20), 10000);
-            let messageobject = { "channel": channel, "message": message, "preContent": (preContent ?? undefined) };
+            const isVerified = (__1.i.clientData[sym]._options?.botStatus ?? "default") === "verified";
+            const limit = (0, _checklimit_1._checklimit)(__1.i.clientData[sym].queueData.privmsg?.[channel] ?? {}, isVerified ? 2000 : 20, 10000);
+            let messageobject = {
+                channel: channel,
+                message: message,
+                preContent: preContent ?? undefined,
+            };
             if (limit.isReached) {
                 if (!__1.i.clientData[sym].queue.privmsg)
                     __1.i.clientData[sym].queue.privmsg = [];
                 __1.i.clientData[sym].queue.privmsg.push(messageobject);
                 return (0, privmsg_queue_1.privmsgQueue)(sym, undefined, messageobject, resolve, reject);
             }
-            ;
             if (!__1.i.clientData[sym].queueData.privmsg)
                 __1.i.clientData[sym].queueData.privmsg = {};
             if (!__1.i.clientData[sym].queueData.privmsg[channel])
@@ -59,11 +61,10 @@ class twitchAction {
                 __1.i.clientData[sym].queueData.privmsg._all = {};
             __1.i.clientData[sym].queueData.privmsg[channel][Date.now()] = messageobject;
             __1.i.clientData[sym].queueData.privmsg._all[Date.now()] = messageobject;
-            __1.i.emitTwitchAction(sym, undefined, "PRIVMSG", `${channel} :${message}`, (preContent ?? undefined))
+            __1.i.emitTwitchAction(sym, undefined, "PRIVMSG", `${channel} :${message}`, preContent ?? undefined)
                 .then(resolve)
                 .catch(reject);
         });
     };
 }
 exports.twitchAction = twitchAction;
-;

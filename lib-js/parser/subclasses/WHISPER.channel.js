@@ -10,7 +10,5 @@ class channel {
         this.name = inp.senderUserName;
         this.id = inp.threadID;
     }
-    ;
 }
 exports.channel = channel;
-;

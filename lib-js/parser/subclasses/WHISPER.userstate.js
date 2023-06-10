@@ -22,7 +22,5 @@ class userstate {
         this.badgesRaw = inp.badgesRaw;
         this.id = inp.senderUserID;
     }
-    ;
 }
 exports.userstate = userstate;
-;

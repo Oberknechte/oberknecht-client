@@ -34,7 +34,7 @@ function messageParser(sym, rawMessage, wsnum) {
     if (!(rawMessage ?? undefined))
         throw Error("rawMessage is undefined");
     rawMessage = rawMessage.replace(/\r\n$/g, "");
-    let wsnum_ = (wsnum ?? __1.i.clientData[sym].currentKnecht);
+    let wsnum_ = wsnum ?? __1.i.clientData[sym].currentKnecht;
     let IRCCommand = (0, oberknecht_utils_1.messageCommand)(rawMessage);
     __1.i.OberknechtEmitter[sym].emit(["irc:_message", `irc:${wsnum_}:_message`], rawMessage);
     __1.i.OberknechtActionEmitter[sym].emit(IRCCommand, rawMessage);
@@ -49,64 +49,61 @@ function messageParser(sym, rawMessage, wsnum) {
         case "ROOMSTATE":
         case "USERNOTICE":
         case "USERSTATE":
-        case "WHISPER":
-            {
-                __1.i.OberknechtEmitter[sym].emit([`irc:${IRCCommand.toLowerCase()}`, `irc:${wsnum_}:${IRCCommand.toLowerCase()}`, IRCCommand], new messageTypes[`${IRCCommand.toLowerCase()}Message`](sym, rawMessage));
-                break;
-            }
-            ;
-        case "PRIVMSG":
-            {
-                const privmsg = new messageTypes.privmsgMessage(sym, rawMessage);
-                __1.i.OberknechtEmitter[sym].emit([`irc:${IRCCommand.toLowerCase()}`, `irc:${wsnum_}:${IRCCommand.toLowerCase()}`, IRCCommand], privmsg, privmsg.channelName, privmsg.senderUserName, privmsg.messageText);
-                break;
-            }
-            ;
-        case "PING":
-            {
-                __1.i.OberknechtEmitter[sym].emit(["irc:ping", `irc:${wsnum_}:ping`, "PING"]);
-                __1.i.reconnectingKnechtClient[sym][wsnum_].send("PONG");
-                break;
-            }
-            ;
+        case "WHISPER": {
+            __1.i.OberknechtEmitter[sym].emit([
+                `irc:${IRCCommand.toLowerCase()}`,
+                `irc:${wsnum_}:${IRCCommand.toLowerCase()}`,
+                IRCCommand,
+            ], new messageTypes[`${IRCCommand.toLowerCase()}Message`](sym, rawMessage));
+            break;
+        }
+        case "PRIVMSG": {
+            const privmsg = new messageTypes.privmsgMessage(sym, rawMessage);
+            __1.i.OberknechtEmitter[sym].emit([
+                `irc:${IRCCommand.toLowerCase()}`,
+                `irc:${wsnum_}:${IRCCommand.toLowerCase()}`,
+                IRCCommand,
+            ], privmsg, privmsg.channelName, privmsg.senderUserName, privmsg.messageText);
+            break;
+        }
+        case "PING": {
+            __1.i.OberknechtEmitter[sym].emit(["irc:ping", `irc:${wsnum_}:ping`, "PING"]);
+            __1.i.reconnectingKnechtClient[sym][wsnum_].send("PONG");
+            break;
+        }
         case "PONG": {
             __1.i.OberknechtEmitter[sym].emit(["irc:pong", `irc:${wsnum_}:pong`, "PONG"]);
             break;
         }
-        case "375":
-            {
-                (async () => {
-                    if (!__1.i.clientData[sym]._options.clientid) {
-                        await (0, _getclientid_1._getclientid)(sym, __1.i.clientData[sym]._options.token);
-                    }
-                    ;
-                    if (!__1.i.clientData[sym])
-                        return;
-                    if (wsnum_ == 0)
-                        __1.i.OberknechtEmitter[sym].emit(["ready"], rawMessage);
-                    __1.i.OberknechtEmitter[sym].emit(["client:ready", `irc:${wsnum_}:ready`, "irc:open", "irc:ready"], rawMessage);
-                })();
-                if (__1.i.clientData[sym]._options.channels && __1.i.clientData[sym]._options.channels.length > 0) {
-                    if (wsnum_ == 0) {
-                        (0, joinAll_1.joinAll)(sym, __1.i.clientData[sym]._options.channels)
-                            .then(() => {
-                            if (!__1.i.clientData[sym])
-                                return;
-                            __1.i.OberknechtEmitter[sym]?.emit(["client:autojoin", "autojoin"], __1.i.clientData[sym]._options.channels);
-                        })
-                            .catch(e => {
-                            if (!__1.i.clientData[sym])
-                                return;
-                            __1.i.OberknechtEmitter[sym]?.emit(["error", "unhandledRejection"], e);
-                        });
-                    }
+        case "375": {
+            (async () => {
+                if (!__1.i.clientData[sym]._options.clientid) {
+                    await (0, _getclientid_1._getclientid)(sym, __1.i.clientData[sym]._options.token);
                 }
-                ;
-                break;
+                if (!__1.i.clientData[sym])
+                    return;
+                if (wsnum_ == 0)
+                    __1.i.OberknechtEmitter[sym].emit(["ready"], rawMessage);
+                __1.i.OberknechtEmitter[sym].emit(["client:ready", `irc:${wsnum_}:ready`, "irc:open", "irc:ready"], rawMessage);
+            })();
+            if (__1.i.clientData[sym]._options.channels &&
+                __1.i.clientData[sym]._options.channels.length > 0) {
+                if (wsnum_ == 0) {
+                    (0, joinAll_1.joinAll)(sym, __1.i.clientData[sym]._options.channels)
+                        .then(() => {
+                        if (!__1.i.clientData[sym])
+                            return;
+                        __1.i.OberknechtEmitter[sym]?.emit(["client:autojoin", "autojoin"], __1.i.clientData[sym]._options.channels);
+                    })
+                        .catch((e) => {
+                        if (!__1.i.clientData[sym])
+                            return;
+                        __1.i.OberknechtEmitter[sym]?.emit(["error", "unhandledRejection"], e);
+                    });
+                }
             }
-            ;
+            break;
+        }
     }
-    ;
 }
 exports.messageParser = messageParser;
-;

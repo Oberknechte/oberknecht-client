@@ -11,11 +11,10 @@ function joinAll(sym, channels) {
         await Promise.all(channels_.map(async (v) => {
             return await twitchAction_1.twitchAction.join(sym, v);
         }))
-            .then(joinchans => {
+            .then((joinchans) => {
             resolve(joinchans);
         })
             .catch(reject);
     });
 }
 exports.joinAll = joinAll;
-;

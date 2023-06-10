@@ -45,7 +45,10 @@ class whisperMessage {
         this.sym = sym;
         this._raw = rawMessage;
         this.IRCCommand = (0, oberknecht_utils_1.messageCommand)(this._raw);
-        this.IRCMessageParts = [...this._raw.split(" ").slice(0, 4), (0, oberknecht_utils_1.messageContent)(this._raw)];
+        this.IRCMessageParts = [
+            ...this._raw.split(" ").slice(0, 4),
+            (0, oberknecht_utils_1.messageContent)(this._raw),
+        ];
         this.IRCParameters = (0, oberknecht_utils_1.messageParameters)(this._raw);
         this.IRCMessagePrefix = (0, oberknecht_utils_1.messagePrefix)(this._raw);
         this.prefix = __1.i.clientData[sym]._options.prefix;
@@ -62,11 +65,14 @@ class whisperMessage {
         this.messageParts = this.messageText.split(" ");
         this.messageArguments = [...this.messageParts];
         let msgmatch = this.messageText.match(new RegExp(`^${this.prefix}+\\w+`, "gi"));
-        this.command = ((msgmatch ?? undefined) ? msgmatch?.[0]?.replace(new RegExp(`^${this.prefix}`), "") : undefined);
+        this.command =
+            msgmatch ?? undefined
+                ? msgmatch?.[0]?.replace(new RegExp(`^${this.prefix}`), "")
+                : undefined;
         if (msgmatch)
             this.messageArguments = this.messageArguments.slice(this.prefix.split(" ").length - 1);
         this.turboRaw = this.IRCParameters["turbo"];
-        this.turbo = (this.turboRaw === "1");
+        this.turbo = this.turboRaw === "1";
         this.threadID = this.IRCParameters["thread-id"];
         this.messageID = this.IRCParameters["message-id"];
         this.userstate = new WHISPER_userstate_1.userstate(this);
@@ -74,14 +80,14 @@ class whisperMessage {
         this.channel = new WHISPER_channel_1.channel(this);
         this.server = new WHISPER_server_1.server(this);
     }
-    ;
-    async whisper(message) { return (0, whisper_1.whisper)(this.sym, this.senderUserID, message); }
-    ;
+    async whisper(message) {
+        return (0, whisper_1.whisper)(this.sym, this.senderUserID, message);
+    }
     send = this.whisper;
     reply = this.whisper;
     action = this.whisper;
-    async sendRaw(message) { return (0, sendraw_1.sendraw)(this.sym, message).catch(); }
-    ;
+    async sendRaw(message) {
+        return (0, sendraw_1.sendraw)(this.sym, message).catch();
+    }
 }
 exports.whisperMessage = whisperMessage;
-;

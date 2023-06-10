@@ -24,7 +24,7 @@ async function _createws(sym) {
         let reconnectingKnechtSocket = new reconnecting_websocket_1.default(__1.i.clientData[sym].wsUrl, [], { WebSocket: ws_1.WebSocket });
         __1.i.reconnectingKnechtClient[sym][wsNum] = reconnectingKnechtSocket;
         __1.i.clientData[sym].knechtSockets[wsNum] = {
-            "channels": []
+            channels: [],
         };
         __1.i.clientData[sym].currentKnecht = wsNum;
         reconnectingKnechtSocket.addEventListener("open", (response) => {
@@ -32,27 +32,30 @@ async function _createws(sym) {
                 return;
             __1.i.clientData[sym].knechtSockets[wsNum].startTime = Date.now();
             reconnectingKnechtSocket.send(`CAP REQ :twitch.tv/membership twitch.tv/tags twitch.tv/commands`);
-            reconnectingKnechtSocket.send(`PASS ${!__1.i.clientData[sym]._options.anonymus ? `oauth:${__1.i.clientData[sym]._options.token ?? ""}` : "schmoopiie"}`);
-            reconnectingKnechtSocket.send(`NICK ${!__1.i.clientData[sym]._options.anonymus ? __1.i.clientData[sym]._options.username ?? "oberknecht" : "justinfan69"}`);
+            reconnectingKnechtSocket.send(`PASS ${!__1.i.clientData[sym]._options.anonymus
+                ? `oauth:${__1.i.clientData[sym]._options.token ?? ""}`
+                : "schmoopiie"}`);
+            reconnectingKnechtSocket.send(`NICK ${!__1.i.clientData[sym]._options.anonymus
+                ? __1.i.clientData[sym]._options.username ?? "oberknecht"
+                : "justinfan69"}`);
             oberknechtEmitter.emit(["ws:open", `ws:${wsNum}:open`, "client:open", "irc:open", "open"], response);
             __1.i.clientData[sym].wsConnections.push(wsNum);
             if (__1.i.clientData[sym].knechtSockets[wsNum].closechannels) {
-                __1.i.clientData[sym].knechtSockets[wsNum].closechannels.forEach(ch => {
-                    __1.i.emitTwitchAction(sym, wsNum, "JOIN", ch)
-                        .then(() => {
+                __1.i.clientData[sym].knechtSockets[wsNum].closechannels.forEach((ch) => {
+                    __1.i.emitTwitchAction(sym, wsNum, "JOIN", ch).then(() => {
                         if (__1.i.clientData[sym].knechtSockets[wsNum].closechannels.includes(ch))
                             __1.i.clientData[sym].knechtSockets[wsNum].closechannels.splice(__1.i.clientData[sym].knechtSockets[wsNum].closechannels.indexOf(ch), 1);
                     });
                 });
             }
-            ;
             resolve(wsNum);
         });
         reconnectingKnechtSocket.addEventListener("close", (response) => {
             if (!__1.i.clientData[sym])
                 return;
-            __1.i.clientData[sym].knechtSockets[wsNum].closechannels = __1.i.clientData[sym].knechtSockets[wsNum].channels;
-            __1.i.clientData[sym].knechtSockets[wsNum].channels.forEach(ch => {
+            __1.i.clientData[sym].knechtSockets[wsNum].closechannels =
+                __1.i.clientData[sym].knechtSockets[wsNum].channels;
+            __1.i.clientData[sym].knechtSockets[wsNum].channels.forEach((ch) => {
                 if (__1.i.clientData[sym].channels.includes(ch))
                     __1.i.clientData[sym].channels.splice(__1.i.clientData[sym].channels.indexOf(ch), 1);
             });
@@ -65,7 +68,10 @@ async function _createws(sym) {
             if (!__1.i.clientData[sym])
                 return;
             oberknechtEmitter.emit(["ws:message", `ws:${wsNum}:message`], response);
-            response.data.replace(/\r\n$/g, "").split("\r\n").forEach(response_ => {
+            response.data
+                .replace(/\r\n$/g, "")
+                .split("\r\n")
+                .forEach((response_) => {
                 (0, messageParser_1.messageParser)(sym, response_, wsNum);
             });
         });
@@ -77,4 +83,3 @@ async function _createws(sym) {
     });
 }
 exports._createws = _createws;
-;

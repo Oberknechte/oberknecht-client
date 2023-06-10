@@ -23,7 +23,10 @@ class clearchatMessage {
         this.timestamp = dn;
         this._raw = rawMessage;
         this.IRCCommand = (0, oberknecht_utils_1.messageCommand)(rawMessage);
-        this.IRCMessageParts = [...this._raw.split(" ").slice(0, 4), (0, oberknecht_utils_1.messageContent)(this._raw)];
+        this.IRCMessageParts = [
+            ...this._raw.split(" ").slice(0, 4),
+            (0, oberknecht_utils_1.messageContent)(this._raw),
+        ];
         this.IRCParameters = (0, oberknecht_utils_1.messageParameters)(this._raw);
         this.banDuration = this.IRCParameters["ban-duration"] ?? undefined;
         this.channelName = (0, oberknecht_utils_1.correctChannelName)(this.IRCMessageParts[3]);
@@ -32,9 +35,7 @@ class clearchatMessage {
         this.targetUserName = this.IRCMessageParts[4] ?? undefined;
         this.serverTimestampRaw = parseInt(this.IRCParameters["tmi-sent-ts"]);
         this.serverTimestamp = new Date(this.serverTimestampRaw);
-        this.serverDelay = (dn - this.serverTimestampRaw);
+        this.serverDelay = dn - this.serverTimestampRaw;
     }
-    ;
 }
 exports.clearchatMessage = clearchatMessage;
-;

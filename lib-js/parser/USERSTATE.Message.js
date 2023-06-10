@@ -47,18 +47,16 @@ class userstateMessage {
         this.senderUserType = this.IRCParameters["user-type"] ?? undefined;
         this.senderUserColor = this.IRCParameters["color"] ?? undefined;
         this.channelNameRaw = this.IRCMessageParts[3] ?? undefined;
-        this.channelName = (__1.i.utils.cleanChannelName(this.channelNameRaw));
+        this.channelName = __1.i.utils.cleanChannelName(this.channelNameRaw);
         this.emoteSetsRaw = this.IRCParameters["emote-sets"];
         this.emoteSets = (0, oberknecht_utils_1.messageEmoteSets)(this.emoteSetsRaw);
         this.isModRaw = this.IRCParameters["mod"];
-        this.isMod = (this.isModRaw === "1");
+        this.isMod = this.isModRaw === "1";
         this.isSubscriberRaw = this.IRCParameters["subscriber"];
-        this.isSubscriber = (this.isSubscriberRaw === "1");
+        this.isSubscriber = this.isSubscriberRaw === "1";
         this.turboRaw = this.IRCParameters["turbo"];
-        this.turbo = (this.turboRaw === "1");
+        this.turbo = this.turboRaw === "1";
         this.messageID = this.IRCParameters["id"] ?? undefined;
     }
-    ;
 }
 exports.userstateMessage = userstateMessage;
-;

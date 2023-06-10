@@ -6,4 +6,3 @@ function createSym() {
     return (n++).toString();
 }
 exports.createSym = createSym;
-;

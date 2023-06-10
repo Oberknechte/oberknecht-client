@@ -12,7 +12,5 @@ class server {
         this.timestampRaw = inp.serverTimestampRaw;
         this.IRCParameters = inp.IRCParameters;
     }
-    ;
 }
 exports.server = server;
-;

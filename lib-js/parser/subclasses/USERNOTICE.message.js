@@ -22,7 +22,5 @@ class message {
         this.timestampRaw = inp.serverTimestampRaw;
         this.delete = inp.delete;
     }
-    ;
 }
 exports.message = message;
-;

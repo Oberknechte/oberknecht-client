@@ -31,24 +31,32 @@ class userstate {
         this.badgesRaw = inp.badgesRaw;
         this.id = inp.senderUserID;
     }
-    ;
-    async ban(reason) { return __1.i.OberknechtAPI[this._inp.sym].ban(this._inp.channelID, this._inp.senderUserID, reason); }
-    ;
-    async unban() { return __1.i.OberknechtAPI[this._inp.sym].unban(this._inp.channelID, this._inp.senderUserID); }
-    ;
-    async timeout(duration, reason) { return __1.i.OberknechtAPI[this._inp.sym].timeout(this._inp.channelID, this._inp.senderUserID, duration, reason); }
-    ;
-    async untimeout() { return __1.i.OberknechtAPI[this._inp.sym].unban(this._inp.channelID, this._inp.senderUserID); }
-    async shoutout() { return __1.i.OberknechtAPI[this._inp.sym].shoutout(this._inp.channelID, this._inp.senderUserID); }
-    ;
-    async mod() { return __1.i.OberknechtAPI[this._inp.sym].mod(this._inp.senderUserID); }
-    ;
-    async unmod() { return __1.i.OberknechtAPI[this._inp.sym].unmod(this._inp.senderUserID); }
-    ;
-    async vip() { return __1.i.OberknechtAPI[this._inp.sym].vip(this._inp.senderUserID); }
-    ;
-    async unvip() { return __1.i.OberknechtAPI[this._inp.sym].unvip(this._inp.senderUserID); }
-    ;
+    async ban(reason) {
+        return __1.i.OberknechtAPI[this._inp.sym].ban(this._inp.channelID, this._inp.senderUserID, reason);
+    }
+    async unban() {
+        return __1.i.OberknechtAPI[this._inp.sym].unban(this._inp.channelID, this._inp.senderUserID);
+    }
+    async timeout(duration, reason) {
+        return __1.i.OberknechtAPI[this._inp.sym].timeout(this._inp.channelID, this._inp.senderUserID, duration, reason);
+    }
+    async untimeout() {
+        return __1.i.OberknechtAPI[this._inp.sym].unban(this._inp.channelID, this._inp.senderUserID);
+    }
+    async shoutout() {
+        return __1.i.OberknechtAPI[this._inp.sym].shoutout(this._inp.channelID, this._inp.senderUserID);
+    }
+    async mod() {
+        return __1.i.OberknechtAPI[this._inp.sym].mod(this._inp.senderUserID);
+    }
+    async unmod() {
+        return __1.i.OberknechtAPI[this._inp.sym].unmod(this._inp.senderUserID);
+    }
+    async vip() {
+        return __1.i.OberknechtAPI[this._inp.sym].vip(this._inp.senderUserID);
+    }
+    async unvip() {
+        return __1.i.OberknechtAPI[this._inp.sym].unvip(this._inp.senderUserID);
+    }
 }
 exports.userstate = userstate;
-;
