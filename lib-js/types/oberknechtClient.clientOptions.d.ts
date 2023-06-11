@@ -19,4 +19,5 @@ export type clientOptions = {
     ignoreJoinLimits?: boolean;
     disableSlashCommands?: boolean;
     delayBetweenMessages?: number;
+    asyncDelay?: number;
 };

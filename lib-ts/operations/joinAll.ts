@@ -1,5 +1,6 @@
 import { convertToArray, correctChannelName, sleep } from "oberknecht-utils";
 import { twitchAction } from "../handlers/twitchAction";
+import { i } from "..";
 
 export function joinAll(sym: string, channels: string | string[]) {
   return new Promise(async (resolve, reject) => {
@@ -9,8 +10,12 @@ export function joinAll(sym: string, channels: string | string[]) {
     );
 
     await Promise.all(
-      channels_.map(async (v: string) => {
-        return await twitchAction.join(sym, v);
+      channels_.map(async (v: string, idx) => {
+        return new Promise(async (resolve2) => {
+          setTimeout(() => {
+            twitchAction.join(sym, v).then(resolve2).catch(resolve2);
+          }, (i.clientData[sym]._options.asyncDelay ?? 10) * idx);
+        });
       })
     )
       .then((joinchans) => {

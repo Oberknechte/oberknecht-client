@@ -104,7 +104,7 @@ class privmsgMessage {
         this.badges = (0, oberknecht_utils_1.messageBadges)(this.badgesRaw);
         this.bits = parseInt(this.IRCParameters["bits"] ?? 0);
         this.emotesRaw = this.IRCParameters["emotes"];
-        this.emotes = (0, oberknecht_utils_1.messageEmotes)(this.emotesRaw);
+        this.emotes = (0, oberknecht_utils_1.messageEmotes)(this.emotesRaw ?? "");
         this.flags = this.IRCParameters["flags"];
         this.isSubscriberRaw = this.IRCParameters["subscriber"];
         this.isSubscriber = this.isSubscriberRaw === "1";

@@ -18,7 +18,7 @@ class message {
         this.type = inp.IRCCommand;
         this.emotes = inp.emotes;
         this.emotesRaw = inp.emotesRaw;
-        this.emotecount = Object.keys(inp.emotes).length;
+        this.emotecount = inp.emotes.length;
     }
 }
 exports.message = message;

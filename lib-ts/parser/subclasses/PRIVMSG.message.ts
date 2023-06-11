@@ -30,7 +30,7 @@ export class message {
     this.type = inp.IRCCommand;
     this.emotes = inp.emotes;
     this.emotesRaw = inp.emotesRaw;
-    this.emotecount = Object.keys(this.emotes).length;
+    this.emotecount = this.emotes.length;
     this.timestamp = inp.serverTimestamp;
     this.timestampRaw = inp.serverTimestampRaw;
   }

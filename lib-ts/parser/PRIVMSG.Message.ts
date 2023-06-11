@@ -143,7 +143,7 @@ export class privmsgMessage {
     this.badges = messageBadges(this.badgesRaw);
     this.bits = parseInt(this.IRCParameters["bits"] ?? 0);
     this.emotesRaw = this.IRCParameters["emotes"];
-    this.emotes = messageEmotes(this.emotesRaw);
+    this.emotes = messageEmotes(this.emotesRaw ?? "");
     this.flags = this.IRCParameters["flags"];
 
     this.isSubscriberRaw = this.IRCParameters["subscriber"];

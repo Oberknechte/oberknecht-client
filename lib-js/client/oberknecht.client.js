@@ -104,6 +104,7 @@ class oberknechtClient {
         let _options = (options ?? {});
         _options.max_channels_per_ws = _options.max_channels_per_ws ?? 100;
         _options.delayBetweenMessages = _options.delayBetweenMessages ?? 10;
+        _options.asyncDelay = options.asyncDelay ?? 50;
         __1.i.clientData[this.symbol] = {
             queue: {},
             queueData: {},

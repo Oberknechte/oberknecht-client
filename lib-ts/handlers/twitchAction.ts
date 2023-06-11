@@ -5,18 +5,18 @@ import { joinQueue } from "./join.queue";
 import { privmsgQueue } from "./privmsg.queue";
 
 export class twitchAction {
-  static join = async (sym: string, channel: string, wsnum?: number) => {
-    return new Promise(async (resolve, reject) => {
-      if (!i.clientData[sym].queueData.join)
-        i.clientData[sym].queueData.join = {};
-      const isVerified =
-        (i.clientData[sym]._options?.botStatus ?? "default") === "verified";
-      const limit = _checklimit(
-        i.clientData[sym].queueData.join,
-        isVerified || i.clientData[sym]._options?.ignoreJoinLimits ? 2000 : 20,
-        10000
-      );
+  static join = (sym: string, channel: string, wsnum?: number) => {
+    if (!i.clientData[sym].queueData.join)
+      i.clientData[sym].queueData.join = {};
+    const isVerified =
+      (i.clientData[sym]._options?.botStatus ?? "default") === "verified";
+    const limit = _checklimit(
+      i.clientData[sym].queueData.join,
+      isVerified || i.clientData[sym]._options?.ignoreJoinLimits ? 2000 : 20,
+      10000
+    );
 
+    return new Promise((resolve, reject) => {
       if (limit.isReached) {
         if (!i.clientData[sym].queue.join) i.clientData[sym].queue.join = [];
 
@@ -47,22 +47,22 @@ export class twitchAction {
     });
   };
 
-  static privmsg = async (
+  static privmsg = (
     sym: string,
     channel: string,
     message: string,
     preContent?: string
   ) => {
-    return new Promise(async (resolve, reject) => {
-      if (!i.clientData[sym].queueData.privmsg)
-        i.clientData[sym].queueData.privmsg = {};
-      const isVerified =
-        (i.clientData[sym]._options?.botStatus ?? "default") === "verified";
-      const limit = _checklimit(
-        i.clientData[sym].queueData.privmsg?.[channel] ?? {},
-        isVerified ? 2000 : 20,
-        10000
-      );
+    if (!i.clientData[sym].queueData.privmsg)
+      i.clientData[sym].queueData.privmsg = {};
+    const isVerified =
+      (i.clientData[sym]._options?.botStatus ?? "default") === "verified";
+    const limit = _checklimit(
+      i.clientData[sym].queueData.privmsg?.[channel] ?? {},
+      isVerified ? 2000 : 20,
+      10000
+    );
+    return new Promise((resolve, reject) => {
       let messageobject = {
         channel: channel,
         message: message,
