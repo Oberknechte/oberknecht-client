@@ -67,7 +67,7 @@ async function emitTwitchAction(sym, wsnum, messageType, messageContent, preCont
                         if (!messageArguments[1])
                             return reject(Error("No user specified (messageArguments[1] is undefined)"));
                         __1.i.OberknechtAPI[sym]
-                            .ban((0, oberknecht_utils_1.cleanChannelName)(channel), (0, oberknecht_utils_1.cleanChannelName)(messageArguments[1]), messageArguments.slice(2).join(" "))
+                            .ban((0, oberknecht_utils_1.cleanChannelName)(channel), (0, oberknecht_utils_1.cleanChannelName)(messageArguments[1]), undefined, messageArguments.slice(2).join(" "))
                             .then(resolve)
                             .catch(reject);
                         return;

@@ -15,7 +15,7 @@ export async function part(sym: string, channel: string) {
             i.clientData[sym].channels.indexOf(channel_),
             1
           );
-        if (i.clientData[sym].knechtSockets[wsnum].channels.includes(channel_))
+        if (i.clientData[sym].knechtSockets[wsnum]?.channels?.includes(channel_))
           i.clientData[sym].knechtSockets[wsnum].channels.splice(
             i.clientData[sym].knechtSockets[wsnum].channels.indexOf(channel_),
             1

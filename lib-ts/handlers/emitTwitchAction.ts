@@ -91,6 +91,7 @@ export async function emitTwitchAction(
               .ban(
                 cleanChannelName(channel),
                 cleanChannelName(messageArguments[1]),
+                undefined,
                 messageArguments.slice(2).join(" ")
               )
               .then(resolve)

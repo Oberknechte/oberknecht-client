@@ -13,7 +13,7 @@ async function part(sym, channel) {
             .then(() => {
             if (__1.i.clientData[sym].channels?.includes(channel_))
                 __1.i.clientData[sym].channels.splice(__1.i.clientData[sym].channels.indexOf(channel_), 1);
-            if (__1.i.clientData[sym].knechtSockets[wsnum].channels.includes(channel_))
+            if (__1.i.clientData[sym].knechtSockets[wsnum]?.channels?.includes(channel_))
                 __1.i.clientData[sym].knechtSockets[wsnum].channels.splice(__1.i.clientData[sym].knechtSockets[wsnum].channels.indexOf(channel_), 1);
             if (__1.i.clientData[sym].knechtSockets.channels[channel_])
                 delete __1.i.clientData[sym].knechtSockets.channels[channel_];
