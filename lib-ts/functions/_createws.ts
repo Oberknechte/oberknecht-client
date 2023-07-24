@@ -16,16 +16,17 @@ export async function _createws(sym) {
     let wsNum = (i.clientData[sym].wsNum ?? 0).toString();
     i.clientData[sym].wsNum++;
 
+    
     let reconnectingKnechtSocket = new ReconnectingWebSocket(
       i.clientData[sym].wsUrl,
       [],
       { WebSocket: knechtSocket }
-    );
-    i.reconnectingKnechtClient[sym][wsNum] = reconnectingKnechtSocket;
-    i.clientData[sym].knechtSockets[wsNum] = {
-      channels: [],
-    };
-
+      );
+      i.reconnectingKnechtClient[sym][wsNum] = reconnectingKnechtSocket;
+      i.clientData[sym].knechtSockets[wsNum] = {
+        channels: [],
+      };
+      
     i.clientData[sym].currentKnecht = wsNum;
 
     reconnectingKnechtSocket.addEventListener("open", (response) => {
