@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.emitTwitchAction = void 0;
 let oberknecht_utils_1 = require("oberknecht-utils");
 let _splitmsg_1 = require("../functions/_splitmsg");
-let announcementColors_1 = require("oberknecht-api/lib-js/types/announcementColors");
+let annoucement_1 = require("oberknecht-api/lib-js/types/endpoints/annoucement");
 let _createws_1 = require("../functions/_createws");
 let __1 = require("..");
 let currentInQueue = {};
@@ -122,7 +122,7 @@ async function emitTwitchAction(sym, wsnum, messageType, messageContent, preCont
                             return reject(Error("No announce message specified (messageArguments[1] is undefined)"));
                         let announcementColor;
                         // @ts-ignore
-                        if (announcementColors_1.announcementColors.includes(messageArguments[1]))
+                        if (annoucement_1.announcementColors.includes(messageArguments[1]))
                             announcementColor = messageArguments[1];
                         __1.i.OberknechtAPI[sym]
                             .announce((0, oberknecht_utils_1.cleanChannelName)(channel), messageArguments

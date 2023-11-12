@@ -1,6 +1,6 @@
 import { cleanChannelName, sleep } from "oberknecht-utils";
 import { _splitmsg } from "../functions/_splitmsg";
-import { announcementColors } from "oberknecht-api/lib-js/types/announcementColors";
+import { announcementColors } from "oberknecht-api/lib-js/types/endpoints/annoucement";
 import { _createws } from "../functions/_createws";
 import { i } from "..";
 

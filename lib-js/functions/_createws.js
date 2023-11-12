@@ -5,9 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports._createws = void 0;
 const reconnecting_websocket_1 = __importDefault(require("reconnecting-websocket"));
-const messageParser_1 = require("../parser/messageParser");
-const ws_1 = require("ws");
-const __1 = require("..");
+let messageParser_1 = require("../parser/messageParser");
+let ws_1 = require("ws");
+let __1 = require("..");
 async function _createws(sym) {
     return new Promise((resolve, reject) => {
         if (!__1.i.clientData[sym])
