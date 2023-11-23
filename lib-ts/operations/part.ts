@@ -7,7 +7,9 @@ export async function part(sym: string, channel: string) {
   let channel_ = correctChannelName(channel);
 
   return new Promise((resolve, reject) => {
-    let wsnum = i.clientData[sym].knechtSockets.channels[channel_];
+    let wsnum = i.clientData[sym].knechtSockets?.channels?.[channel_];
+    if (!wsnum)
+      return reject(Error("could not get channel of knechtSocket channels"));
     i.emitTwitchAction(sym, wsnum, "PART", channel_)
       .then(() => {
         if (i.clientData[sym].channels?.includes(channel_))
@@ -15,7 +17,9 @@ export async function part(sym: string, channel: string) {
             i.clientData[sym].channels.indexOf(channel_),
             1
           );
-        if (i.clientData[sym].knechtSockets[wsnum]?.channels?.includes(channel_))
+        if (
+          i.clientData[sym].knechtSockets[wsnum]?.channels?.includes(channel_)
+        )
           i.clientData[sym].knechtSockets[wsnum].channels.splice(
             i.clientData[sym].knechtSockets[wsnum].channels.indexOf(channel_),
             1

@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.partAll = void 0;
-let oberknecht_utils_1 = require("oberknecht-utils");
-let __1 = require("..");
-let part_1 = require("./part");
+const oberknecht_utils_1 = require("oberknecht-utils");
+const __1 = require("..");
+const part_1 = require("./part");
 /** @param {Symbol} sym @param {Array | string} channels */
 async function partAll(sym, channels) {
     if (!(channels ?? undefined))

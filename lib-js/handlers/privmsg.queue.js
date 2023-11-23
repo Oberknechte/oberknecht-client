@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.privmsgQueue = void 0;
-let __1 = require("..");
+const __1 = require("..");
 let isTriggered = {};
 let q = {};
 function privmsgQueue(sym, timeout, mobj, res, rej) {

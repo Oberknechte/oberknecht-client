@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.privmsg = void 0;
-let oberknecht_utils_1 = require("oberknecht-utils");
-let twitchAction_1 = require("../handlers/twitchAction");
+const oberknecht_utils_1 = require("oberknecht-utils");
+const twitchAction_1 = require("../handlers/twitchAction");
 async function privmsg(sym, channel, message) {
     return new Promise((resolve, reject) => {
         if (!(channel ?? undefined) || !(message ?? undefined))

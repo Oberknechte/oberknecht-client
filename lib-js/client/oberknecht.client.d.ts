@@ -55,8 +55,8 @@ export declare class oberknechtClient {
     ping: () => Promise<unknown>;
     whisper: (targetUser: string, message: string, customtoken?: string) => Promise<any>;
     shoutout: (from_broadcaster_id: string, to_broadcaster_id: string, customtoken?: string) => Promise<void>;
-    timeout: (broadcaster_id: string, target_user_id: string, duration: string, reason?: string, customtoken?: string) => Promise<import("oberknecht-api/lib-ts/types/endpoints/ban").banResponse>;
-    ban: (broadcaster_id: string, target_user_id: string, reason: any, customtoken?: string) => Promise<import("oberknecht-api/lib-ts/types/endpoints/ban").banResponse>;
+    timeout: (broadcaster_id: string, target_user_id: string, duration: number, reason?: string, customtoken?: string) => Promise<import("oberknecht-api/lib-ts/types/endpoints/ban").banResponse>;
+    ban: (broadcaster_id: string, target_user_id: string, reason: string, customtoken?: string) => Promise<import("oberknecht-api/lib-ts/types/endpoints/ban").banResponse>;
     unban: (broadcaster_id: string, target_user_id: string, customtoken?: string) => Promise<void>;
     untimeout: (broadcaster_id: string, target_user_id: string, customtoken?: string) => Promise<void>;
     deleteMessage: (broadcaster_id: string, message_id: string, customtoken?: string) => Promise<void>;
@@ -93,7 +93,7 @@ export declare class oberknechtClient {
     off: (eventName: string, callback: Function) => void;
     remove: (eventName: string, callback: Function) => void;
     removeAllListeners: (eventName: string) => void;
-    emit: (eventName: string | string[], args: any) => void;
+    emit: (eventName: string | string[], ...args: any) => void;
     onPRIVMSG: (callback: typeof onPRIVMSGcallback) => void;
     onGLOBALUSERSTATE: (callback: typeof onGLOBALUSERSTATEcallback) => void;
     onCLEARCHAT: (callback: typeof onCLEARCHATcallback) => void;

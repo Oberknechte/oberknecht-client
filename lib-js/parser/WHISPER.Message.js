@@ -1,14 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.whisperMessage = void 0;
-let oberknecht_utils_1 = require("oberknecht-utils");
-let whisper_1 = require("../operations/whisper");
-let sendraw_1 = require("../operations/sendraw");
-let WHISPER_userstate_1 = require("./subclasses/WHISPER.userstate");
-let WHISPER_message_1 = require("./subclasses/WHISPER.message");
-let WHISPER_channel_1 = require("./subclasses/WHISPER.channel");
-let WHISPER_server_1 = require("./subclasses/WHISPER.server");
-let __1 = require("..");
+const oberknecht_utils_1 = require("oberknecht-utils");
+const whisper_1 = require("../operations/whisper");
+const sendraw_1 = require("../operations/sendraw");
+const WHISPER_userstate_1 = require("./subclasses/WHISPER.userstate");
+const WHISPER_message_1 = require("./subclasses/WHISPER.message");
+const WHISPER_channel_1 = require("./subclasses/WHISPER.channel");
+const WHISPER_server_1 = require("./subclasses/WHISPER.server");
+const __1 = require("..");
 class whisperMessage {
     sym;
     _raw;

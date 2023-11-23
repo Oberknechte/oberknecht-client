@@ -1,6 +1,6 @@
 import { oberknechtAPI } from "oberknecht-api";
-import { oberknechtAPIOptions } from "oberknecht-api/lib-ts/types/oberknechtAPIOptions";
-export type clientOptions = {
+import { oberknechtAPIOptionsType } from "oberknecht-api/lib-ts/types/oberknechtAPIOptions";
+export declare type clientOptions = {
     token: string;
     username?: string;
     channels?: string[];
@@ -15,7 +15,7 @@ export type clientOptions = {
     executeOnOutgoingPrivmsg?: Function;
     max_channels_per_ws?: number;
     debug?: number;
-    apiOptions?: typeof oberknechtAPIOptions;
+    apiOptions?: oberknechtAPIOptionsType;
     ignoreJoinLimits?: boolean;
     disableSlashCommands?: boolean;
     delayBetweenMessages?: number;
