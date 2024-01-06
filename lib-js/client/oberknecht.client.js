@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.oberknechtClient = void 0;
-const oberknecht_api_1 = require("oberknecht-api");
-const oberknecht_emitters_1 = require("oberknecht-emitters");
+let oberknecht_api_1 = require("oberknecht-api");
+let oberknecht_emitters_1 = require("oberknecht-emitters");
 const onPRIVMSGcallback = (privmsg, channelName, senderUsername, messageText) => { };
 const onGLOBALUSERSTATEcallback = (globaluserstate) => { };
 const onCLEARCHATcallback = (clearchat) => { };
@@ -13,19 +13,19 @@ const onWHISPERcallback = (whisper) => { };
 const onErrorcallback = (error) => { };
 const onAutojoinCallback = (channels) => { };
 const onEmptyCallback = () => { };
-const getusers_1 = require("../operations/getusers");
-const _createws_1 = require("../functions/_createws");
-const __1 = require("..");
-const privmsg_1 = require("../operations/privmsg");
-const ping_1 = require("../operations/ping");
-const whisper_1 = require("../operations/whisper");
-const partAll_1 = require("../operations/partAll");
-const joinAll_1 = require("../operations/joinAll");
-const part_1 = require("../operations/part");
-const join_1 = require("../operations/join");
-const sendraw_1 = require("../operations/sendraw");
-const action_1 = require("../operations/action");
-const getuser_1 = require("../operations/getuser");
+let getusers_1 = require("../operations/getusers");
+let _createws_1 = require("../functions/_createws");
+let __1 = require("..");
+let privmsg_1 = require("../operations/privmsg");
+let ping_1 = require("../operations/ping");
+let whisper_1 = require("../operations/whisper");
+let partAll_1 = require("../operations/partAll");
+let joinAll_1 = require("../operations/joinAll");
+let part_1 = require("../operations/part");
+let join_1 = require("../operations/join");
+let sendraw_1 = require("../operations/sendraw");
+let action_1 = require("../operations/action");
+let getuser_1 = require("../operations/getuser");
 let clientSymNum = 0;
 class oberknechtClient {
     #symbol = `oberknechtClient-${clientSymNum++}`;
@@ -98,6 +98,7 @@ class oberknechtClient {
     static get _allIndex() {
         return this._allIndex;
     }
+    _options;
     constructor(options) {
         if (!options?.token)
             throw Error("options.token is undefined");
@@ -118,17 +119,18 @@ class oberknechtClient {
         __1.i.OberknechtEmitter[this.symbol] = this.OberknechtEmitter;
         __1.i.OberknechtActionEmitter[this.symbol] = this.OberknechtActionEmitter;
         __1.i.OberknechtQueueEmitter[this.symbol] = this.OberknechtQueueEmitter;
-        this.API = new oberknecht_api_1.oberknechtAPI({
-            token: _options.token,
-            ...(options.apiOptions ?? {}),
-        });
-        __1.i.OberknechtAPI[this.symbol] = this.API;
+        this._options = __1.i.clientData[this.symbol]._options = _options;
         process.on("unhandledRejection", (e) => {
             this.OberknechtEmitter.emitError("unhandledRejection", Error("unhandledRejection", { cause: e }));
         });
     }
     async connect() {
         return new Promise(async (resolve, reject) => {
+            this.API = new oberknecht_api_1.oberknechtAPI({
+                token: this._options.token,
+                ...(this._options.apiOptions ?? {}),
+            });
+            __1.i.OberknechtAPI[this.symbol] = this.API;
             await this.API.verify()
                 .then(() => {
                 __1.i.clientData[this.symbol]._options = {

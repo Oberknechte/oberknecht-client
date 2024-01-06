@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getuser = void 0;
-const getusers_1 = require("./getusers");
+let getusers_1 = require("./getusers");
 async function getuser(sym, login, id, noautofilterids) {
     return new Promise((resolve, reject) => {
         (0, getusers_1.getusers)(sym, login, id, noautofilterids)

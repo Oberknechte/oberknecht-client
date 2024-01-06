@@ -128,6 +128,8 @@ export class oberknechtClient {
     return this._allIndex;
   }
 
+  _options: clientOptions;
+
   constructor(options: clientOptions) {
     if (!options?.token) throw Error("options.token is undefined");
     let _options = (options ?? {}) as clientOptions;
@@ -151,12 +153,7 @@ export class oberknechtClient {
     i.OberknechtActionEmitter[this.symbol] = this.OberknechtActionEmitter;
     i.OberknechtQueueEmitter[this.symbol] = this.OberknechtQueueEmitter;
 
-    this.API = new oberknechtAPI({
-      token: _options.token,
-      ...(options.apiOptions ?? {}),
-    });
-
-    i.OberknechtAPI[this.symbol] = this.API;
+    this._options = i.clientData[this.symbol]._options = _options;
 
     process.on("unhandledRejection", (e) => {
       this.OberknechtEmitter.emitError(
@@ -168,6 +165,13 @@ export class oberknechtClient {
 
   async connect() {
     return new Promise<void>(async (resolve, reject) => {
+      this.API = new oberknechtAPI({
+        token: this._options.token,
+        ...(this._options.apiOptions ?? {}),
+      });
+
+      i.OberknechtAPI[this.symbol] = this.API;
+
       await this.API.verify()
         .then(() => {
           i.clientData[this.symbol]._options = {

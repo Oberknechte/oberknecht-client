@@ -1,17 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.privmsgMessage = void 0;
-const oberknecht_utils_1 = require("oberknecht-utils");
-const __1 = require("..");
-const PRIVMSG_userstate_1 = require("./subclasses/PRIVMSG.userstate");
-const PRIVMSG_message_1 = require("./subclasses/PRIVMSG.message");
-const PRIVMSG_channel_1 = require("./subclasses/PRIVMSG.channel");
-const PRIVMSG_server_1 = require("./subclasses/PRIVMSG.server");
-const privmsg_1 = require("../operations/privmsg");
-const reply_1 = require("../operations/reply");
-const action_1 = require("../operations/action");
-const sendraw_1 = require("../operations/sendraw");
-const whisper_1 = require("../operations/whisper");
+let oberknecht_utils_1 = require("oberknecht-utils");
+let __1 = require("..");
+let PRIVMSG_userstate_1 = require("./subclasses/PRIVMSG.userstate");
+let PRIVMSG_message_1 = require("./subclasses/PRIVMSG.message");
+let PRIVMSG_channel_1 = require("./subclasses/PRIVMSG.channel");
+let PRIVMSG_server_1 = require("./subclasses/PRIVMSG.server");
+let privmsg_1 = require("../operations/privmsg");
+let reply_1 = require("../operations/reply");
+let action_1 = require("../operations/action");
+let sendraw_1 = require("../operations/sendraw");
+let whisper_1 = require("../operations/whisper");
 class privmsgMessage {
     sym;
     _raw;

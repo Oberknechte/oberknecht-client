@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.userstate = void 0;
-const __1 = require("../..");
+let __1 = require("../..");
 class userstate {
     _inp;
     username;

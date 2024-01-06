@@ -40,6 +40,7 @@ export declare class oberknechtClient {
     static get options(): clientOptions;
     static get clientData(): any;
     static get _allIndex(): any;
+    _options: clientOptions;
     constructor(options: clientOptions);
     connect(): Promise<void>;
     destroy(): Promise<void>;

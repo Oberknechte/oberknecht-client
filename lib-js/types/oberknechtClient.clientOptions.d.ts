@@ -1,6 +1,6 @@
 import { oberknechtAPI } from "oberknecht-api";
 import { oberknechtAPIOptionsType } from "oberknecht-api/lib-ts/types/oberknechtAPIOptions";
-export declare type clientOptions = {
+export type clientOptions = {
     token: string;
     username?: string;
     channels?: string[];

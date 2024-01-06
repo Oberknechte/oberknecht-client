@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.twitchAction = void 0;
-const __1 = require("..");
-const _checklimit_1 = require("../functions/_checklimit");
-const join_queue_1 = require("./join.queue");
-const privmsg_queue_1 = require("./privmsg.queue");
+let __1 = require("..");
+let _checklimit_1 = require("../functions/_checklimit");
+let join_queue_1 = require("./join.queue");
+let privmsg_queue_1 = require("./privmsg.queue");
 class twitchAction {
     static join = (sym, channel, wsnum) => {
         if (!__1.i.clientData[sym].queueData.join)

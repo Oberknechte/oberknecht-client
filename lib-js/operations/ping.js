@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ping = void 0;
-const __1 = require("..");
+let __1 = require("..");
 async function ping(sym, wsnum) {
     return new Promise((resolve, reject) => {
         let pingstart = Date.now();

@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.joinQueue = void 0;
-const __1 = require("..");
-const _createws_1 = require("../functions/_createws");
+let __1 = require("..");
+let _createws_1 = require("../functions/_createws");
 let isTriggered = {};
 let q = {};
 function joinQueue(sym, timeout, chan, res, rej) {
