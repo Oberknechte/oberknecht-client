@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.handleNotice = void 0;
-let __1 = require("..");
-let NOTICE_Message_1 = require("../parser/NOTICE.Message");
+const __1 = require("..");
+const NOTICE_Message_1 = require("../parser/NOTICE.Message");
 function handleNotice(sym, rawMessage, wsnum) {
     let notice = new NOTICE_Message_1.noticeMessage(sym, rawMessage);
     if (!__1.i.clientData[sym])

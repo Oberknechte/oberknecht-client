@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.join = void 0;
-let oberknecht_utils_1 = require("oberknecht-utils");
-let twitchAction_1 = require("../handlers/twitchAction");
+const oberknecht_utils_1 = require("oberknecht-utils");
+const twitchAction_1 = require("../handlers/twitchAction");
 async function join(sym, channel) {
     if (!(channel ?? undefined))
         return;

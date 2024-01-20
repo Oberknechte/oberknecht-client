@@ -1,4 +1,4 @@
-export type mobjtype = {
+export declare type mobjtype = {
     channel: string;
     message: string;
     preContent?: string;

@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.emitTwitchAction = void 0;
-let oberknecht_utils_1 = require("oberknecht-utils");
-let _splitmsg_1 = require("../functions/_splitmsg");
-let annoucement_1 = require("oberknecht-api/lib-js/types/endpoints/annoucement");
-let _createws_1 = require("../functions/_createws");
-let __1 = require("..");
+const oberknecht_utils_1 = require("oberknecht-utils");
+const _splitmsg_1 = require("../functions/_splitmsg");
+const annoucement_1 = require("oberknecht-api/lib-js/types/endpoints/annoucement");
+const _createws_1 = require("../functions/_createws");
+const __1 = require("..");
 let currentInQueue = {};
 let lastStart = {};
 async function emitTwitchAction(sym, wsnum, messageType, messageContent, preContent, rawContent) {

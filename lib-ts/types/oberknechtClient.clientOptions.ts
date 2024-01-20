@@ -1,5 +1,6 @@
 import { oberknechtAPI } from "oberknecht-api";
 import { oberknechtAPIOptionsType } from "oberknecht-api/lib-ts/types/oberknechtAPIOptions";
+import { oberknechtEmitterOptions } from "oberknecht-emitters/lib-ts/types/oberknecht.emitter.options";
 
 export type clientOptions = {
   token: string;
@@ -22,4 +23,5 @@ export type clientOptions = {
   disableSlashCommands?: boolean;
   delayBetweenMessages?: number;
   asyncDelay?: number;
+  emitterOptions?: oberknechtEmitterOptions;
 };

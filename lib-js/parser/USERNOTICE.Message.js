@@ -1,17 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.usernoticeMessage = void 0;
-let oberknecht_utils_1 = require("oberknecht-utils");
-let __1 = require("..");
-let USERNOTICE_userstate_1 = require("./subclasses/USERNOTICE.userstate");
-let USERNOTICE_message_1 = require("./subclasses/USERNOTICE.message");
-let USERNOTICE_channel_1 = require("./subclasses/USERNOTICE.channel");
-let USERNOTICE_server_1 = require("./subclasses/USERNOTICE.server");
-let privmsg_1 = require("../operations/privmsg");
-let reply_1 = require("../operations/reply");
-let action_1 = require("../operations/action");
-let sendraw_1 = require("../operations/sendraw");
-let whisper_1 = require("../operations/whisper");
+const oberknecht_utils_1 = require("oberknecht-utils");
+const __1 = require("..");
+const USERNOTICE_userstate_1 = require("./subclasses/USERNOTICE.userstate");
+const USERNOTICE_message_1 = require("./subclasses/USERNOTICE.message");
+const USERNOTICE_channel_1 = require("./subclasses/USERNOTICE.channel");
+const USERNOTICE_server_1 = require("./subclasses/USERNOTICE.server");
+const privmsg_1 = require("../operations/privmsg");
+const reply_1 = require("../operations/reply");
+const action_1 = require("../operations/action");
+const sendraw_1 = require("../operations/sendraw");
+const whisper_1 = require("../operations/whisper");
 class usernoticeMessage {
     sym;
     _raw;

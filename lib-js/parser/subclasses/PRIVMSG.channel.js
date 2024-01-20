@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.channel = void 0;
-let __1 = require("../..");
+const __1 = require("../..");
 class channel {
     _inp;
     name;

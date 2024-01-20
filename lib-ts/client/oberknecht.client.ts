@@ -149,6 +149,8 @@ export class oberknechtClient {
     this.#secure = _options.secure ?? false;
     this.#startTime = i.clientData[this.symbol].startTime = Date.now();
 
+    if (_options.emitterOptions)
+      this.OberknechtEmitter._options = _options.emitterOptions;
     i.OberknechtEmitter[this.symbol] = this.OberknechtEmitter;
     i.OberknechtActionEmitter[this.symbol] = this.OberknechtActionEmitter;
     i.OberknechtQueueEmitter[this.symbol] = this.OberknechtQueueEmitter;

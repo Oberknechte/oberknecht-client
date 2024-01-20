@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.clearchatMessage = void 0;
-let oberknecht_utils_1 = require("oberknecht-utils");
+const oberknecht_utils_1 = require("oberknecht-utils");
 class clearchatMessage {
     sym;
     _raw;

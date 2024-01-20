@@ -1,6 +1,7 @@
 import { oberknechtAPI } from "oberknecht-api";
 import { oberknechtAPIOptionsType } from "oberknecht-api/lib-ts/types/oberknechtAPIOptions";
-export type clientOptions = {
+import { oberknechtEmitterOptions } from "oberknecht-emitters/lib-ts/types/oberknecht.emitter.options";
+export declare type clientOptions = {
     token: string;
     username?: string;
     channels?: string[];
@@ -20,4 +21,5 @@ export type clientOptions = {
     disableSlashCommands?: boolean;
     delayBetweenMessages?: number;
     asyncDelay?: number;
+    emitterOptions?: oberknechtEmitterOptions;
 };

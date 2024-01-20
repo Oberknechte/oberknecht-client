@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.part = void 0;
-let oberknecht_utils_1 = require("oberknecht-utils");
-let __1 = require("..");
+const oberknecht_utils_1 = require("oberknecht-utils");
+const __1 = require("..");
 async function part(sym, channel) {
     if (!(channel ?? undefined))
         return;
