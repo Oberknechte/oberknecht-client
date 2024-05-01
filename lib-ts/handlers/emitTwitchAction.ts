@@ -1,8 +1,9 @@
-import { cleanChannelName, sleep } from "oberknecht-utils";
+import { cleanChannelName, regexEscape, sleep } from "oberknecht-utils";
 import { _splitmsg } from "../functions/_splitmsg";
 import { announcementColors } from "oberknecht-api/lib-js/types/endpoints/annoucement";
 import { _createws } from "../functions/_createws";
 import { i } from "..";
+import { messageParser } from "../parser/messageParser";
 
 let currentInQueue = {};
 let lastStart = {};
@@ -380,17 +381,50 @@ export async function emitTwitchAction(
       await sleep(getDelay(i_));
       currentInQueue[sym]--;
 
+      function matchJoinBanned(a) {
+        return (
+          a.startsWith("@msg-id=msg_banned") &&
+          messageContent.split(" ")[0] === a.split(" ")[3]
+        );
+      }
+
       i.OberknechtActionEmitter[sym]
-        ?.once(messageType.toUpperCase(), () => {
-          i.reconnectingKnechtClient[sym]?.[wsnum]?.send(
-            rawContent
-              ? rawContent
-              : `${
-                  preContent ?? undefined ? `${preContent} ` : ""
-                }${messageType} ${message ?? ""}`
-          );
-        })
+        ?.once(
+          messageType.toUpperCase(),
+          () => {
+            i.reconnectingKnechtClient[sym]?.[wsnum]?.send(
+              rawContent
+                ? rawContent
+                : `${
+                    preContent ?? undefined ? `${preContent} ` : ""
+                  }${messageType} ${message ?? ""}`
+            );
+          },
+          undefined,
+          (r) => {
+            if (typeof r.response.args !== "string") return false;
+            if (messageType.toUpperCase() === "JOIN") {
+              if (
+                r.response.args.split(" ")[2] ===
+                  messageContent.split(" ")[0] ||
+                matchJoinBanned(r.response.args)
+              )
+                return true;
+
+              return false;
+            }
+
+            if (messageType.toUpperCase() === r.response.args.split(" ")[1])
+              return true;
+          }
+        )
         .then((a) => {
+          if (
+            messageType.toUpperCase() === "JOIN" &&
+            // @ts-ignore
+            matchJoinBanned(a)
+          )
+            return reject(a);
           return resolve(a);
         })
         .catch((e) => {

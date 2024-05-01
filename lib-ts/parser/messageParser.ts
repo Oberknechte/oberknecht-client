@@ -5,7 +5,7 @@ import { _getclientid } from "../operations/_getclientid";
 import { handleNotice } from "../handlers/handleNotice";
 import { i } from "..";
 
-export function messageParser(sym: string, rawMessage: string, wsnum?: number) {
+export function messageParser(sym: string, rawMessage: string, wsnum?: number, noemit?: boolean) {
   if (!(rawMessage ?? undefined)) throw Error("rawMessage is undefined");
   rawMessage = rawMessage.replace(/\r\n$/g, "");
   let wsnum_: number = wsnum ?? i.clientData[sym].currentKnecht;

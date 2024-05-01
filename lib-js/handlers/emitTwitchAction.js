@@ -284,13 +284,33 @@ async function emitTwitchAction(sym, wsnum, messageType, messageContent, preCont
             currentInQueue[sym]++;
             await (0, oberknecht_utils_1.sleep)(getDelay(i_));
             currentInQueue[sym]--;
+            function matchJoinBanned(a) {
+                return (a.startsWith("@msg-id=msg_banned") &&
+                    messageContent.split(" ")[0] === a.split(" ")[3]);
+            }
             __1.i.OberknechtActionEmitter[sym]
                 ?.once(messageType.toUpperCase(), () => {
                 __1.i.reconnectingKnechtClient[sym]?.[wsnum]?.send(rawContent
                     ? rawContent
                     : `${preContent ?? undefined ? `${preContent} ` : ""}${messageType} ${message ?? ""}`);
+            }, undefined, (r) => {
+                if (typeof r.response.args !== "string")
+                    return false;
+                if (messageType.toUpperCase() === "JOIN") {
+                    if (r.response.args.split(" ")[2] ===
+                        messageContent.split(" ")[0] ||
+                        matchJoinBanned(r.response.args))
+                        return true;
+                    return false;
+                }
+                if (messageType.toUpperCase() === r.response.args.split(" ")[1])
+                    return true;
             })
                 .then((a) => {
+                if (messageType.toUpperCase() === "JOIN" &&
+                    // @ts-ignore
+                    matchJoinBanned(a))
+                    return reject(a);
                 return resolve(a);
             })
                 .catch((e) => {

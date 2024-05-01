@@ -30,7 +30,7 @@ const messageTypes = __importStar(require("./Message.Types"));
 const _getclientid_1 = require("../operations/_getclientid");
 const handleNotice_1 = require("../handlers/handleNotice");
 const __1 = require("..");
-function messageParser(sym, rawMessage, wsnum) {
+function messageParser(sym, rawMessage, wsnum, noemit) {
     if (!(rawMessage ?? undefined))
         throw Error("rawMessage is undefined");
     rawMessage = rawMessage.replace(/\r\n$/g, "");

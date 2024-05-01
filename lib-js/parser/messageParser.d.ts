@@ -1,1 +1,1 @@
-export declare function messageParser(sym: string, rawMessage: string, wsnum?: number): void;
+export declare function messageParser(sym: string, rawMessage: string, wsnum?: number, noemit?: boolean): void;
