@@ -41,9 +41,17 @@ export class twitchAction {
             !i.clientData[sym].knechtSockets[wsnum].channels.includes(channel)
           )
             i.clientData[sym].knechtSockets[wsnum].channels.push(channel);
-          return resolve(this);
+          return resolve({
+            channel: channel,
+            statusMessage: "Success",
+            wsNum: wsnum,
+          });
         })
-        .catch(reject);
+        .catch((e) => {
+          let e2 = e;
+          if (!(e instanceof Error)) e = Error(e.toString());
+          reject({ error: e, channel: channel, statusMessage: "Error" });
+        });
     });
   };
 
