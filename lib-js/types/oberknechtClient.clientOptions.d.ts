@@ -22,4 +22,6 @@ export declare type clientOptions = {
     delayBetweenMessages?: number;
     asyncDelay?: number;
     emitterOptions?: oberknechtEmitterOptions;
+    maxPendingWSPings?: number;
+    wsPingInterval?: number;
 };

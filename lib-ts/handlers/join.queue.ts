@@ -24,7 +24,7 @@ export function joinQueue(
       const channelNum =
         (i.clientData[sym]._options?.botStatus ?? "default") === "verified" ||
         i.clientData[sym]._options.ignoreJoinLimits
-          ? 2000
+          ? 100
           : 20;
       const channels = i.clientData[sym].queue.join.splice(0, channelNum);
 

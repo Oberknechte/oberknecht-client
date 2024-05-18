@@ -39,7 +39,23 @@ async function _createws(sym) {
                 ? __1.i.clientData[sym]._options.username ?? "oberknecht"
                 : "justinfan69"}`);
             oberknechtEmitter.emit(["ws:open", `ws:${wsNum}:open`, "client:open", "irc:open", "open"], response);
-            __1.i.clientData[sym].wsConnections.push(wsNum);
+            if (__1.i.clientData[sym].knechtSockets[wsNum]?.heartbeatInterval)
+                clearInterval(__1.i.clientData[sym].knechtSockets[wsNum].heartbeatInterval);
+            __1.i.clientData[sym].wsConnections[wsNum] = {};
+            __1.i.clientData[sym].knechtSockets[wsNum].pendingPings = [];
+            __1.i.clientData[sym].knechtSockets[wsNum].heartbeatInterval = setInterval(() => {
+                if (__1.i.clientData[sym].knechtSockets[wsNum].pendingPings.length >=
+                    (__1.i.clientData[sym]?._options?.maxPendingWSPings ?? 5))
+                    reconnectingKnechtSocket.reconnect(4000);
+                else {
+                    __1.i.clientData[sym].knechtSockets[wsNum].pendingPings.push(Date.now());
+                    __1.i.emitTwitchAction(sym, wsNum, "PING")
+                        .then(() => {
+                        __1.i.clientData[sym].knechtSockets[wsNum].pendingPings.shift();
+                    })
+                        .catch(() => { });
+                }
+            }, __1.i.clientData[sym]?._options?.wsPingInterval ?? 30000);
             if (__1.i.clientData[sym].knechtSockets[wsNum].closechannels) {
                 __1.i.clientData[sym].knechtSockets[wsNum].closechannels.forEach((ch) => {
                     __1.i.emitTwitchAction(sym, wsNum, "JOIN", ch).then(() => {
@@ -61,7 +77,7 @@ async function _createws(sym) {
             });
             __1.i.clientData[sym].knechtSockets[wsNum].channels = [];
             __1.i.clientData[sym].knechtSockets[wsNum].startTime = null;
-            __1.i.clientData[sym].wsConnections.splice(__1.i.clientData[sym].wsConnections.indexOf(wsNum), 1);
+            delete __1.i.clientData[sym].wsConnections[wsNum];
             oberknechtEmitter.emit(["ws:close", `ws:${wsNum}:close`, "client:close", "irc:close", "close"], response);
         });
         reconnectingKnechtSocket.addEventListener("message", (response) => {

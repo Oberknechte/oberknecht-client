@@ -401,22 +401,24 @@ export async function emitTwitchAction(
             );
           },
           undefined,
-          (r) => {
-            if (typeof r.response.args !== "string") return false;
-            if (messageType.toUpperCase() === "JOIN") {
-              if (
-                r.response.args.split(" ")[2] ===
-                  messageContent.split(" ")[0] ||
-                matchJoinBanned(r.response.args)
-              )
-                return true;
+          ["JOIN"].includes(messageType.toUpperCase())
+            ? (r) => {
+                if (typeof r.response.args !== "string") return false;
+                if (messageType.toUpperCase() === "JOIN") {
+                  if (
+                    r.response.args.split(" ")[2] ===
+                      messageContent.split(" ")[0] ||
+                    matchJoinBanned(r.response.args)
+                  )
+                    return true;
 
-              return false;
-            }
+                  return undefined;
+                }
 
-            if (messageType.toUpperCase() === r.response.args.split(" ")[1])
-              return true;
-          }
+                if (messageType.toUpperCase() === r.response.args.split(" ")[1])
+                  return true;
+              }
+            : undefined
         )
         .then((a) => {
           if (

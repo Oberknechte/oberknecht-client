@@ -293,19 +293,21 @@ async function emitTwitchAction(sym, wsnum, messageType, messageContent, preCont
                 __1.i.reconnectingKnechtClient[sym]?.[wsnum]?.send(rawContent
                     ? rawContent
                     : `${preContent ?? undefined ? `${preContent} ` : ""}${messageType} ${message ?? ""}`);
-            }, undefined, (r) => {
-                if (typeof r.response.args !== "string")
-                    return false;
-                if (messageType.toUpperCase() === "JOIN") {
-                    if (r.response.args.split(" ")[2] ===
-                        messageContent.split(" ")[0] ||
-                        matchJoinBanned(r.response.args))
+            }, undefined, ["JOIN"].includes(messageType.toUpperCase())
+                ? (r) => {
+                    if (typeof r.response.args !== "string")
+                        return false;
+                    if (messageType.toUpperCase() === "JOIN") {
+                        if (r.response.args.split(" ")[2] ===
+                            messageContent.split(" ")[0] ||
+                            matchJoinBanned(r.response.args))
+                            return true;
+                        return undefined;
+                    }
+                    if (messageType.toUpperCase() === r.response.args.split(" ")[1])
                         return true;
-                    return false;
                 }
-                if (messageType.toUpperCase() === r.response.args.split(" ")[1])
-                    return true;
-            })
+                : undefined)
                 .then((a) => {
                 if (messageType.toUpperCase() === "JOIN" &&
                     // @ts-ignore

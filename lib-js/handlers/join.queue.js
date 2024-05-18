@@ -20,7 +20,7 @@ function joinQueue(sym, timeout, chan, res, rej) {
         if ((__1.i.clientData[sym].queue?.join ?? []).length > 0) {
             const channelNum = (__1.i.clientData[sym]._options?.botStatus ?? "default") === "verified" ||
                 __1.i.clientData[sym]._options.ignoreJoinLimits
-                ? 2000
+                ? 100
                 : 20;
             const channels = __1.i.clientData[sym].queue.join.splice(0, channelNum);
             channels.forEach(async (channel) => {

@@ -16,17 +16,16 @@ export async function _createws(sym) {
     let wsNum = (i.clientData[sym].wsNum ?? 0).toString();
     i.clientData[sym].wsNum++;
 
-    
     let reconnectingKnechtSocket = new ReconnectingWebSocket(
       i.clientData[sym].wsUrl,
       [],
       { WebSocket: knechtSocket }
-      );
-      i.reconnectingKnechtClient[sym][wsNum] = reconnectingKnechtSocket;
-      i.clientData[sym].knechtSockets[wsNum] = {
-        channels: [],
-      };
-      
+    );
+    i.reconnectingKnechtClient[sym][wsNum] = reconnectingKnechtSocket;
+    i.clientData[sym].knechtSockets[wsNum] = {
+      channels: [],
+    };
+
     i.clientData[sym].currentKnecht = wsNum;
 
     reconnectingKnechtSocket.addEventListener("open", (response) => {
@@ -54,7 +53,31 @@ export async function _createws(sym) {
         response
       );
 
-      i.clientData[sym].wsConnections.push(wsNum);
+      if (i.clientData[sym].knechtSockets[wsNum]?.heartbeatInterval)
+        clearInterval(i.clientData[sym].knechtSockets[wsNum].heartbeatInterval);
+
+      i.clientData[sym].wsConnections[wsNum] = {};
+      i.clientData[sym].knechtSockets[wsNum].pendingPings = [];
+      i.clientData[sym].knechtSockets[wsNum].heartbeatInterval = setInterval(
+        () => {
+          if (
+            i.clientData[sym].knechtSockets[wsNum].pendingPings.length >=
+            (i.clientData[sym]?._options?.maxPendingWSPings ?? 5)
+          )
+            reconnectingKnechtSocket.reconnect(4000);
+          else {
+            i.clientData[sym].knechtSockets[wsNum].pendingPings.push(
+              Date.now()
+            );
+            i.emitTwitchAction(sym, wsNum, "PING")
+              .then(() => {
+                i.clientData[sym].knechtSockets[wsNum].pendingPings.shift();
+              })
+              .catch(() => {});
+          }
+        },
+        i.clientData[sym]?._options?.wsPingInterval ?? 30000
+      );
 
       if (i.clientData[sym].knechtSockets[wsNum].closechannels) {
         i.clientData[sym].knechtSockets[wsNum].closechannels.forEach((ch) => {
@@ -87,10 +110,7 @@ export async function _createws(sym) {
       });
       i.clientData[sym].knechtSockets[wsNum].channels = [];
       i.clientData[sym].knechtSockets[wsNum].startTime = null;
-      i.clientData[sym].wsConnections.splice(
-        i.clientData[sym].wsConnections.indexOf(wsNum),
-        1
-      );
+      delete i.clientData[sym].wsConnections[wsNum];
 
       oberknechtEmitter.emit(
         ["ws:close", `ws:${wsNum}:close`, "client:close", "irc:close", "close"],
