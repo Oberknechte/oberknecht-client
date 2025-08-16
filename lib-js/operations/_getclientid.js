@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports._getclientid = void 0;
-const __1 = require("..");
+let __1 = require("..");
 async function _getclientid(sym, customtoken) {
     return new Promise((resolve, reject) => {
         if (!(sym ?? undefined) || !(customtoken ?? undefined))

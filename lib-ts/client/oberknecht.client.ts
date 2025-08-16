@@ -142,9 +142,10 @@ export class oberknechtClient {
       _options: _options,
       wsNum: 0,
       wsConnections: [],
-      wsUrl: `ws${_options.secure ? "s" : ""}://irc-ws.chat.twitch.tv:${
-        _options.secure ? 433 : 80
-      }`,
+      // wsUrl: `ws${_options.secure ? "s" : ""}://irc-ws.chat.twitch.tv:${
+      //   _options.secure ? 433 : 80
+      // }`,
+      wsUrl: `wss://irc-ws.chat.twitch.tv:443`,
     };
     this.#startTime = i.clientData[this.symbol].startTime = Date.now();
 
