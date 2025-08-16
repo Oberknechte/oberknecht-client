@@ -136,6 +136,7 @@ export class oberknechtClient {
     _options.max_channels_per_ws = _options.max_channels_per_ws ?? 100;
     _options.delayBetweenMessages = _options.delayBetweenMessages ?? 10;
     _options.asyncDelay = options.asyncDelay ?? 50;
+    this.#secure = _options.secure ?? true;
     i.clientData[this.symbol] = {
       queue: {},
       queueData: {},
@@ -146,7 +147,6 @@ export class oberknechtClient {
         this.#secure ? 433 : 80
       }`,
     };
-    this.#secure = _options.secure ?? true;
     this.#startTime = i.clientData[this.symbol].startTime = Date.now();
 
     if (_options.emitterOptions)
