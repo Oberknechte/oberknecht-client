@@ -146,7 +146,7 @@ export class oberknechtClient {
         this.#secure ? 433 : 80
       }`,
     };
-    this.#secure = _options.secure ?? false;
+    this.#secure = _options.secure ?? true;
     this.#startTime = i.clientData[this.symbol].startTime = Date.now();
 
     if (_options.emitterOptions)

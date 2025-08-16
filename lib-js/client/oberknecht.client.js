@@ -114,7 +114,7 @@ class oberknechtClient {
             wsConnections: [],
             wsUrl: `ws${this.#secure ? "s" : ""}://irc-ws.chat.twitch.tv:${this.#secure ? 433 : 80}`,
         };
-        this.#secure = _options.secure ?? false;
+        this.#secure = _options.secure ?? true;
         this.#startTime = __1.i.clientData[this.symbol].startTime = Date.now();
         if (_options.emitterOptions)
             this.OberknechtEmitter._options = _options.emitterOptions;
