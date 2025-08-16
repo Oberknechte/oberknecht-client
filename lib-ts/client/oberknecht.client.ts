@@ -51,7 +51,7 @@ let clientSymNum = 0;
 
 export class oberknechtClient {
   readonly #symbol: string = `oberknechtClient-${clientSymNum++}`;
-  #secure: boolean;
+  secure: boolean;
   #startTime = Date.now();
 
   get options() {
@@ -136,15 +136,15 @@ export class oberknechtClient {
     _options.max_channels_per_ws = _options.max_channels_per_ws ?? 100;
     _options.delayBetweenMessages = _options.delayBetweenMessages ?? 10;
     _options.asyncDelay = options.asyncDelay ?? 50;
-    this.#secure = _options.secure ?? true;
+    this.secure = _options.secure ?? true;
     i.clientData[this.symbol] = {
       queue: {},
       queueData: {},
       _options: _options,
       wsNum: 0,
       wsConnections: [],
-      wsUrl: `ws${this.#secure ? "s" : ""}://irc-ws.chat.twitch.tv:${
-        this.#secure ? 433 : 80
+      wsUrl: `ws${this.secure ? "s" : ""}://irc-ws.chat.twitch.tv:${
+        this.secure ? 433 : 80
       }`,
     };
     this.#startTime = i.clientData[this.symbol].startTime = Date.now();
