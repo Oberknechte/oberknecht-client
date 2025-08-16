@@ -15,7 +15,6 @@ import { clientOptions } from "../types/oberknechtClient.clientOptions";
 import { i } from "..";
 export declare class oberknechtClient {
     #private;
-    secure: boolean;
     get options(): any;
     get clientData(): any;
     get _allIndex(): typeof i;

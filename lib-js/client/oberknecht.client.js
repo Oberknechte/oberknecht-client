@@ -29,7 +29,6 @@ const getuser_1 = require("../operations/getuser");
 let clientSymNum = 0;
 class oberknechtClient {
     #symbol = `oberknechtClient-${clientSymNum++}`;
-    secure;
     #startTime = Date.now();
     get options() {
         return __1.i.clientData[this.symbol]?._options ?? {};
@@ -106,14 +105,14 @@ class oberknechtClient {
         _options.max_channels_per_ws = _options.max_channels_per_ws ?? 100;
         _options.delayBetweenMessages = _options.delayBetweenMessages ?? 10;
         _options.asyncDelay = options.asyncDelay ?? 50;
-        this.secure = _options.secure ?? true;
+        _options.secure = _options.secure ?? true;
         __1.i.clientData[this.symbol] = {
             queue: {},
             queueData: {},
             _options: _options,
             wsNum: 0,
             wsConnections: [],
-            wsUrl: `ws${this.secure ? "s" : ""}://irc-ws.chat.twitch.tv:${this.secure ? 433 : 80}`,
+            wsUrl: `ws${_options.secure ? "s" : ""}://irc-ws.chat.twitch.tv:${_options.secure ? 433 : 80}`,
         };
         this.#startTime = __1.i.clientData[this.symbol].startTime = Date.now();
         if (_options.emitterOptions)
